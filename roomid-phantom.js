@@ -12,7 +12,8 @@
  */
 
 // Starts your Bot with default configuration. The SPARK API access token is read from the SPARK_TOKEN env variable 
-var Botkit = require('../botkit-ciscospark/lib/Botkit.js');
+var Botkit = require('botkit');
+
 var controller = Botkit.sparkbot({
     log: true,
     public_address: process.env.PUBLIC_URL,

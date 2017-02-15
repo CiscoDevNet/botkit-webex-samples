@@ -8,7 +8,7 @@
  * 
  */
 
-var Botkit = require('../botkit-ciscospark/lib/Botkit.js');
+var Botkit = require('botkit');
 
 if (!process.env.SPARK_TOKEN) {
     console.log("Could not start as this bot requires a Cisco Spark API access token.");
