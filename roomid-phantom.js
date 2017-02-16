@@ -58,7 +58,7 @@ controller.hears(['(.*)'], 'direct_message,direct_mention', function (bot, messa
 // Welcome message 
 // sent as the bot is added to a Room
 //
-controller.on('bot_room_join', function (bot, trigger) {
+controller.on('bot_space_join', function (bot, trigger) {
     // only take action if it is not the bot who created the room, to send the message back
     var actorId = trigger.original_message.actorId;
     if (actorId == controller.identity.id) {
