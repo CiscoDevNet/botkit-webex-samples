@@ -52,7 +52,7 @@ controller.setupWebserver(process.env.PORT || 3000, function(err, webserver) {
 // Help command
 //
 controller.hears(['^help'], 'direct_message,direct_mention', function(bot, message) {
-    bot.reply(message, { markdown: "Hi, I am the Hello World bot !\n\nType `hello` to see me in action."});
+    bot.reply(message, "Hi, I am the Hello World bot !\n\nType `hello` to see me in action.");
 });
 
 
@@ -61,7 +61,7 @@ controller.hears(['^help'], 'direct_message,direct_mention', function(bot, messa
 //
 controller.hears(['^hello'], 'direct_message,direct_mention', function(bot, message) {
     var email = message.user; // Spark User that created the message orginally 
-    bot.reply(message, { markdown: "Hello <@personEmail:" + email + ">"});
+    bot.reply(message, "Hello <@personEmail:" + email + ">");
 });
 
 
@@ -69,7 +69,7 @@ controller.hears(['^hello'], 'direct_message,direct_mention', function(bot, mess
 // Fallback command
 //
 controller.hears(['(.*)'], 'direct_message,direct_mention', function (bot, message) {
-    bot.reply(message, { markdown: "sorry, I did not understand, please type:\n- hello\n- help\n" });
+    bot.reply(message, "sorry, I did not understand, please type:\n- hello\n- help\n" );
 });
 
 
@@ -77,10 +77,10 @@ controller.hears(['(.*)'], 'direct_message,direct_mention', function (bot, messa
 // Welcome message 
 // sent as the bot is added to a Room
 //
-controller.on('bot_room_join', function(bot, message) {
-    bot.reply(message, { markdown: "Hi, I am the Hello World bot !\n\nType `hello` to see me in action."}, function(err, newMessage) {
+controller.on('bot_space_join', function(bot, message) {
+    bot.reply(message, "Hi, I am the Hello World bot !\n\nType `hello` to see me in action.", function(err, newMessage) {
         if (newMessage.roomType == "group") {
-            bot.reply(message, { "markdown":"\n\n**Note that this is a 'Group' room. I will answer only when mentionned.**"});
+            bot.reply(message, "\n\n**Note that this is a 'Group' room. I will answer only when mentionned.**");
         }
     });
 });

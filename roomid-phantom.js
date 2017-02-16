@@ -34,7 +34,7 @@ controller.setupWebserver(process.env.PORT || 3000, function (err, webserver) {
 // Help command
 //
 controller.hears(['^help'], 'direct_message,direct_mention', function (bot, message) {
-    bot.reply(message, { markdown: "I am an ephemeral bot !\n\nAdd me to a Room: I'll send you back the room id in a private message and leave the room right away.\n- /about\n- /help\n" });
+    bot.reply(message, "I am an ephemeral bot !\n\nAdd me to a Room: I'll send you back the room id in a private message and leave the room right away.\n- /about\n- /help\n" );
 });
 
 
@@ -42,7 +42,7 @@ controller.hears(['^help'], 'direct_message,direct_mention', function (bot, mess
 // Meta info
 //
 controller.hears(['^about'], 'direct_message,direct_mention', function (bot, message) {
-    bot.reply(message, { markdown: "```json\n{\n   'author':'Stève Sfartz <stsfartz@cisco.com>',\n   'code':'https://github.com/CiscoDevNet/botkit-ciscospark-samples/blob/master/examples/roomid-phantom.js',\n   'description':'a handy tool to retreive Spark Rooms identifiers'\n}\n```" });
+    bot.reply(message, "```json\n{\n   'author':'Stève Sfartz <stsfartz@cisco.com>',\n   'code':'https://github.com/CiscoDevNet/botkit-ciscospark-samples/blob/master/examples/roomid-phantom.js',\n   'description':'a handy tool to retreive Spark Rooms identifiers'\n}\n```" );
 });
 
 
@@ -50,7 +50,7 @@ controller.hears(['^about'], 'direct_message,direct_mention', function (bot, mes
 // Fallback command
 //
 controller.hears(['(.*)'], 'direct_message,direct_mention', function (bot, message) {
-    bot.reply(message, { markdown: "sorry, I did not understand, please type:\n- /about\n- /help\n" });
+    bot.reply(message, "sorry, I did not understand, please type:\n- /about\n- /help\n");
 });
 
 

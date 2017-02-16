@@ -57,20 +57,20 @@ module.exports.fetchNext = function (limit, cb) {
         fine(JSON.stringify(events));
 
         if (events.length == 0) {
-            cb(null, events, "*Guess what? No upcoming event!*");
+            cb(null, events, "**Guess what? No upcoming event!**");
             return;
         }
 
         var nb = events.length;
-        var msg = "*found " + nb + " upcoming events:*";
+        var msg = "**" + nb + " upcoming events:**\n";
         if (nb == 1) {
-            msg = "*only one upcoming event:*";
+            msg = "**only one upcoming event:**\n";
         }
         for (var i = 0; i < nb; i++) {
             var current = events[i];
             //msg += "\n:small_blue_diamond: "
-            msg += "\n*" + (i+1) + ".* ";
-            msg += current.beginDay + " - " + current.endDay + ": <" + current.url + "|" + current.name + ">, " + current.city + " (" + current.country + ")";
+            msg += "\n" + (i+1) + ". ";
+            msg += current.beginDay + " - " + current.endDay + ": [" + current.name + "](" + current.url + "), " + current.city + " (" + current.country + ")";
         }
 
         cb(null, events, msg);
@@ -104,20 +104,20 @@ module.exports.fetchCurrent = function (cb) {
         fine(JSON.stringify(events));
 
         if (events.length == 0) {
-            cb(null, events, "*Found no event currently going on.*");
+            cb(null, events, "**Found no event currently going on.**");
             return;
         }
 
         var nb = events.length;
-        var msg = "*" + nb + " events are running now:*";
+        var msg = "**" + nb + " events are running now:**";
         if (nb == 1) {
-            msg = "*only one event is running now:*";
+            msg = "**only one event is running now:**";
         }
         for (var i = 0; i < nb; i++) {
             var current = events[i];
             //msg += "\n:small_blue_diamond: "
-            msg += "\n*" + (i+1) + ".* ";
-            msg += current.beginDay + " - " + current.endDay + ": <" + current.url + "|" + current.name + ">, " + current.city + " (" + current.country + ")";
+            msg += "\n\n* " + (i+1) + ".* ";
+            msg += current.beginDay + " - " + current.endDay + ": [" + current.name + "](" + current.url + "), " + current.city + " (" + current.country + ")";
         }
 
         cb(null, events, msg);
@@ -129,10 +129,10 @@ module.exports.fetchCurrent = function (cb) {
 module.exports.generateEventsDetails = function (event) {
 
     // 1 line
-    var md = "about *" + event.name + "*";
+    var md = "about **" + event.name + "**";
 
     // 2 line
-    md += "\n_" + event.category + " in " + event.city + " (" + event.country + ")";
+    md += "\n\n_" + event.category + " in " + event.city + " (" + event.country + ")";
     if (event.beginDay != event.endDay) {
         md += " from " + event.beginDayInWeek + " " + event.beginDay + ", " + event.beginTime;
         md += " till " + event.endDayInWeek + " " + event.endDay + ", " + event.endTime;
@@ -142,35 +142,15 @@ module.exports.generateEventsDetails = function (event) {
     }
 
     // 3rd and after...
-    md += "_\n" + event.description;
+    md += "_\n\n" + event.description;
 
     // last line
-    var more = "more on <" + event.url + "|ciscodevnet>";
+    var more = "more on [ciscodevnet](" + event.url + ")";
     if (event.location_url) {
-        more += ", <" + event.location_url + "|organizer>";
+        more += ", [organizer](" + event.location_url + ")";
     }
-    more += ", <https://devnet-events-api.herokuapp.com/api/v1/events/" + event.id + "|json>";
-    md += "\n" + more;
-
-    return md;
-}
-
-
-module.exports.generateEventsDetails2 = function (event) {
-    var md = "*" + event.name + "*: " + event.category + " in " + event.city + " (" + event.country + ")";
-    if (event.beginDay != event.endDay) {
-        md += "\nfrom " + event.beginDayInWeek + " " + event.beginDay + ", " + event.beginTime;
-        md + " till " + event.endDayInWeek + " " + event.endDay + ", " + event.endTime;
-    }
-    else {
-        md += "\non " + event.beginDayInWeek + " " + event.beginDay + ", from " + event.beginTime + " till " + event.endTime;
-    }
-    md += "\n_" + event.description + "_";
-    md += "\nmore on <" + event.url + "|DevNet>";
-    if (event.location_url) {
-        md += ", <" + event.location_url + "|organizer>";
-    }
-    md += ", <https://devnet-events-api.herokuapp.com/api/v1/events/" + event.id + "|json>";
+    more += ", [json](https://devnet-events-api.herokuapp.com/api/v1/events/" + event.id + ")";
+    md += "\n\n" + more;
 
     return md;
 }

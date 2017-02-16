@@ -53,25 +53,23 @@ var Events = require("./events.js");
 //
 controller.hears(['now', 'current'], 'direct_message,direct_mention,mention', function (bot, message) {
 
-    bot.reply(message, { "markdown":"_heard you! let's check what's happening now..._"});
+    bot.reply(message, "_heard you! let's check what's happening now..._");
 
     Events.fetchCurrent(function (err, events, text) {
         if (err) {
-            bot.reply(message, { "markdown":"*sorry, could not contact the organizers :-(*"});
+            bot.reply(message, "*sorry, could not contact the organizers :-(*");
             return;
         }
 
-        bot.reply(message, { "unfurl_links": false, "markdown": text });
-
         if (events.length == 0) {
-            bot.reply(message, { "markdown":"_Type next for upcoming events_"});
+            bot.reply(message, text + "\n\n_Type next for upcoming events_");
             return;
         }
 
         // Store events
         var toPersist = { "id": message.user, "events": events };
         controller.storage.users.save(toPersist, function (err, id) {
-            bot.reply(message, { "markdown":"_Type about [number] for more details_"});
+            bot.reply(message, text + "\n\n_Type about [number] for more details_");
         });
     });
 });
@@ -82,7 +80,7 @@ controller.hears(['now', 'current'], 'direct_message,direct_mention,mention', fu
 //
 controller.hears(['next\s*(.*)', 'upcomings*(.*)', 'events*(.*)'], 'direct_message,direct_mention,mention', function (bot, message) {
 
-    bot.reply(message, { "markdown":"_heard you! asking my crystal ball..._"});
+    bot.reply(message, "_heard you! asking my crystal ball..._");
 
     var limit = parseInt(message.match[1]);
     if (!limit) limit = 5;
@@ -90,16 +88,19 @@ controller.hears(['next\s*(.*)', 'upcomings*(.*)', 'events*(.*)'], 'direct_messa
 
     Events.fetchNext(limit, function (err, events, text) {
         if (err) {
-            bot.reply(message, { "markdown":"**sorry, ball seems broken  :-(**"});
+            bot.reply(message, "**sorry, ball seems broken  :-(**");
             return;
         }
-
-        bot.reply(message, { "unfurl_links": false, "markdown": text });
 
         // Store events
         var toPersist = { "id": message.user, "events": events };
         controller.storage.users.save(toPersist, function (err, id) {
-            bot.reply(message, { "markdown":"_Type about [number] for more details_"});
+            if (err != null) {
+                bot.reply(message, text);
+                return;
+            }
+
+            bot.reply(message, text + "\n\n_Type about [number] for more details_");
         });
     });
 
@@ -187,7 +188,7 @@ controller.hears(['show\s*(.*)', 'more\s*(.*)', 'about\s*(.*)'], 'direct_message
 //
 controller.hears(["help", "who are you"], 'direct_message,direct_mention,mention', function (bot, message) {
     var text = "I am a bot, can help you find current and upcoming events at [Cisco DevNet](https://developer.cisco.com)\n\nCommands I understand: now, next [max], about [index]";
-    bot.reply(message, { "unfurl_links": false, "markdown": text });
+    bot.reply(message, text);
 });
 
 
@@ -196,7 +197,7 @@ controller.hears(["help", "who are you"], 'direct_message,direct_mention,mention
 //
 controller.hears(["(.*)"], 'direct_message,direct_mention,mention', function (bot, message) {
     var text = "Sorry I did not understand, please type: help, now or next";
-    bot.reply(message, { "unfurl_links": false, "markdown": text });
+    bot.reply(message, text);
 });
 
 
@@ -220,8 +221,6 @@ function displayEvent(bot, controller, message, number) {
         }
 
         var event = events[number - 1];
-        bot.reply(message, { "unfurl_links": false, "markdown": Events.generateEventsDetails(event) });
+        bot.reply(message, Events.generateEventsDetails(event));
     });
 }
-
-
