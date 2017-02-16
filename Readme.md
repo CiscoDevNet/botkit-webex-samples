@@ -1,6 +1,6 @@
 # BotKit samples for Cisco Spark
 
-Run each sample in a snatch by setting up yout bot environment variables from the command line:
+You can run any sample in a snatch:
 
 ```shell
 > git clone https://github.com/CiscoDevNet/botkit-ciscospark-samples
@@ -16,11 +16,11 @@ where:
 - SECRET is the secret that Cisco Spark uses to sign the JSON webhooks events posted to your bot
 - [ngrok](http://ngrok.com) is the tunnel engine that will expose your bot on the internet, type: `ngrok http 8080` to launch
 
-New to CiscoSpark? 
-Read the [Starter Guide](https://github.com/ObjectIsAdvantag/hackathon-resources#cisco-spark-starter-guide-chat-calls-meetings) we use at hackathon.
+**New to BotKit?**
+Read the [BotKit for CiscoSpark Guide](https://github.com/howdyai/botkit/blob/master/readme-ciscospark.md)
 
-Don't have a Cisco Spark bot account?
-Go straight to [Spark4Devs](https://developer.ciscospark.com), signin and click [My apps](https://developer.ciscospark.com/apps.html) to create a bot account.
+**New to CiscoSpark?**
+Read the [Starter Guide](https://github.com/ObjectIsAdvantag/hackathon-resources#cisco-spark-starter-guide-chat-calls-meetings) we use at hackathon. Or go straight to [Spark4Devs](https://developer.ciscospark.com), signin and click [My apps](https://developer.ciscospark.com/apps.html) to create a bot account.
 
 
 ## Hello World bot
