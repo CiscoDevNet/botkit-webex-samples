@@ -14,7 +14,9 @@
   "author": "Stève Sfartz (Cisco DevNet) <stsfartz@cisco.com>",
   "license": "MIT",
   "dependencies": {
-    "botkit": "^0.5.0",
-    "debug": "^2.3.2"
+    "botkit": "^0.5.3",
+    "ciscospark-websocket-events": "^1.1.0",
+    "debug": "^2.3.2",
+    "node-emoji": "^1.5.1"
   }
 }

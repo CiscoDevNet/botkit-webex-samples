@@ -25,7 +25,7 @@ Read the [Starter Guide](https://github.com/ObjectIsAdvantag/hackathon-resources
 
 ## Hello World bot
 
-Simplest bot you can run, simply echoes a message with a mention of the Cisco Spark user.
+Simplest bot [you can code](blob/master/helloworld.js#L62): simply echoes a message with a mention of the Cisco Spark user that mentionned him.
 
 ![hello-bot-direct](docs/img/hello-bot-direct.png)
 
@@ -33,18 +33,31 @@ And don't forget to mention him in group rooms.
 
 ![hello-bot-group](docs/img/hello-bot-group.png)
 
-Note that the hello bot will respond to any mentions,
-no reason why he could not chat with other bots.
+Note that the bot will respond to anyone mentioning him,
+then no reason why he could not chat with other bots.
 Below, the Hello bot (impersonnated via the Playground bot token) helling the CiscoDevNet bot.
 
 ![hello-bot-playing](docs/img/hello-bot-playing.png)
 
 
+
+## Emoji events bot
+
+This [bot turns emoji tags](blob/master/emoji.js#58) to unicode characters and posts back the 'emojified' phrase
+
+The bot leverages the [experimental websocket library for CiscoSpark](https://github.com/marchfederico/ciscospark-websocket-events).
+
+![emoji](docs/img/emoji-websocket.png)
+
+
+
+
 ## CiscoDevNet events bot
 
-The bot illustrates how you can create conversations in Cisco Spark thanks to BotKit.
-It requests an external API hosted on Heroku that lists current and upcoming events at DevNet.
+The bot illustrates how you can create Cisco Spark conversations with BotKit.
 
-Here is a version of the bot.
+It calls an external API hosted on Heroku that lists current and upcoming events at DevNet.
+
+[Check the source code](/blob/master/devnet.js#L117) of the bot.
 
 ![devnet-botkit](docs/img/devnet-botkit-convo.png)
