@@ -116,7 +116,7 @@ module.exports.fetchCurrent = function (cb) {
         for (var i = 0; i < nb; i++) {
             var current = events[i];
             //msg += "\n:small_blue_diamond: "
-            msg += "\n\n* " + (i+1) + ".* ";
+            msg += "\n" + (i+1) + ". ";
             msg += current.beginDay + " - " + current.endDay + ": [" + current.name + "](" + current.url + "), " + current.city + " (" + current.country + ")";
         }
 
