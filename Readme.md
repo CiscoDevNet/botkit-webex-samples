@@ -1,6 +1,6 @@
 # BotKit samples for Cisco Spark
 
-Assuming your bot is accessible from the internet or you expose it via [ngrok](https://ngrok.com);
+Assuming your bot is accessible from the internet or you exposed it via a tunnelling tool such as [ngrok](https://ngrok.com),
 you can run any sample in a snatch:
 
 From a bash shell, type:
@@ -39,7 +39,7 @@ Read the [Starter Guide](https://github.com/ObjectIsAdvantag/hackathon-resources
 
 
 
-## Hello World bot
+## Hello World
 
 Simplest bot [you can code](helloworld.js#L62): simply echoes a message with a mention of the Cisco Spark user that mentionned him.
 
@@ -57,7 +57,7 @@ Below, the Hello bot (impersonnated via the Playground bot token) helling the Ci
 
 
 
-## Emoji bot
+## Emoji
 
 This [bot turns emoji tags](emoji.js#58) to unicode characters and posts back the 'emojified' phrase
 
@@ -83,7 +83,7 @@ From a Windows shell, type:
 
 
 
-## CiscoDevNet events bot
+## CiscoDevNet events
 
 This bot illustrates how you can [create conversations](devnet.js#L117),
 and calls an external API hosted on Heroku that lists current and upcoming events at DevNet.
