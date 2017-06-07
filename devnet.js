@@ -20,7 +20,7 @@ if (!process.env.SPARK_TOKEN) {
 
 if (!process.env.PUBLIC_URL) {
     console.log("Could not start as this bot must expose a public endpoint.");
-    console.log("Please add env variable PUBLIC_ROOT on the command line");
+    console.log("Please add env variable PUBLIC_URL on the command line");
     console.log("Example: ");
     console.log("> SPARK_TOKEN=XXXXXXXXXXXX PUBLIC_URL=YYYYYYYYYYYYY node helloworld.js");
     process.exit(1);

@@ -32,7 +32,7 @@ where:
 - [ngrok](http://ngrok.com) helps you expose the bot running on your laptop to the internet, type: `ngrok http 8080` to launch
 
 **New to BotKit?**
-Read the [BotKit for CiscoSpark Guide](https://github.com/howdyai/botkit/blob/master/readme-ciscospark.md)
+Read the [BotKit for CiscoSpark Guide](https://github.com/howdyai/botkit/blob/master/docs/readme-ciscospark.md)
 
 **New to CiscoSpark?**
 Read the [Starter Guide](https://github.com/ObjectIsAdvantag/hackathon-resources#cisco-spark-starter-guide-chat-calls-meetings) we use at hackathon. Or go straight to [Spark4Devs](https://developer.ciscospark.com), signin and click [My apps](https://developer.ciscospark.com/apps.html) to create a bot account.
