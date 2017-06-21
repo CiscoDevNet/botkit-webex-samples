@@ -20,6 +20,12 @@ you can run this template in a snatch.
 
     Pick the HTTPS address that ngrok is now exposing. Note that ngrok exposes HTTP and HTTPS protocols, make sure to pick the HTTPS address.
 
+1. [Optional] Open the `.env` file and modify the settings to accomodate your bot.
+
+    _Note that you can also specify any of these settings via env variables. In practice, the values on the command line or in your machine env will prevail over .env file settings_
+
+    To successfully run your bot, you'll need to specify a PUBLIC_URL for your bot, and a Cisco Spark API token (either in the .env settings or via env variables). In the example below, we do not modify any value in settings and specify all configuration values on the command line.
+
 1. You're ready to run your bot
 
     From a bash shell:
