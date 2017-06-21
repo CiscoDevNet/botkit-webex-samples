@@ -18,9 +18,9 @@ From a windows shell, type:
 > git clone https://github.com/CiscoDevNet/botkit-ciscospark-samples
 > cd botkit-ciscospark-samples
 > npm install
-> set SPARK_TOKEN="0123456789abcdef"
-> set PUBLIC_URL="https://abcdef.ngrok.io"
-> set SECRET="not that secret"
+> set SPARK_TOKEN=0123456789abcdef
+> set PUBLIC_URL=https://abcdef.ngrok.io
+> set SECRET=not that secret
 > node helloworld.js
 ```
 
@@ -75,7 +75,7 @@ From a Windows shell, type:
 
 ```shell
 > npm install
-> set SPARK_TOKEN="0123456789abcdef"
+> set SPARK_TOKEN=0123456789abcdef
 > node emoji.js
 ```
 
