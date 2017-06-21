@@ -1,0 +1,21 @@
+{
+  "name": "devnet-events",
+  "version": "0.1.0",
+  "description": "BotKit sample that invokes an external API",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ciscospark",
+    "botkit",
+    "devnet"
+  ],
+  "author": "Stève Sfartz (Cisco DevNet) <stsfartz@cisco.com>",
+  "license": "MIT",
+  "dependencies": {
+    "botkit": "^0.5.3",
+    "debug": "^2.3.2",
+    "request": "^2.81.0"
+  }
+}

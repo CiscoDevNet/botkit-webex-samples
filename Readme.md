@@ -85,7 +85,8 @@ From a Windows shell, type:
 
 ## CiscoDevNet events
 
-This bot illustrates how you can [create conversations](devnet.js#L117),
-and calls an external API hosted on Heroku that lists current and upcoming events at DevNet.
+This bot illustrates how you can [create conversations](sample-externalapi/bot.js#L117),
+and uses a [wrapper to an external API](sample-externalapi/events.js) hosted on Heroku that lists current and upcoming events at DevNet.
 
 ![devnet-botkit](docs/img/devnet-botkit-convo.png)
+
