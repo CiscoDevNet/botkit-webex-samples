@@ -17,7 +17,7 @@ var Botkit = require('botkit');
 
 if (!process.env.SPARK_TOKEN) {
     console.log("Could not start as bots require a Cisco Spark API access token.");
-    console.log("Please add env variable SPARK_TOKEN on the command line");
+    console.log("Please add env variable SPARK_TOKEN on the command line or to the .env file");
     console.log("Example: ");
     console.log("> SPARK_TOKEN=XXXXXXXXXXXX PUBLIC_URL=YYYYYYYYYYYYY node bot.js");
     process.exit(1);
@@ -85,17 +85,16 @@ require("fs").readdirSync(normalizedPath).forEach(function (file) {
 
 // Utility to add mentions if Bot is in a 'Group' space
 bot.enrichCommand = function (message, command) {
-    if (process.env.BOT_NICKNAME) {
-        var botName = process.env.BOT_NICKNAME;
-        if ("group" == message.roomType) {
+    var botName = process.env.BOT_NICKNAME || "BotName";
+    if ("group" == message.roomType) {
+        return "`@" + botName + " " + command + "`";
+    }
+    if (message.original_message) {
+        if ("group" == message.original_message.roomType) {
             return "`@" + botName + " " + command + "`";
         }
-        if (message.original_message) {
-            if ("group" == message.original_message.roomType) {
-                return "`@" + botName + " " + command + "`";
-            }   
-        }
     }
+
 
     return "`" + command + "`";
 }
