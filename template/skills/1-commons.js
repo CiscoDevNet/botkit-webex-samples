@@ -3,7 +3,7 @@
 //
 module.exports = function (controller) {
 
-    controller.hears(["^ping", "^\.about", "^\.commons", "^\.bot"], 'direct_message,direct_mention,mention', function (bot, message) {
+    controller.hears(["^ping", "^\.about", "^\.commons", "^\.bot"], 'direct_message,direct_mention', function (bot, message) {
         var metadata = '{\n'
             + '   "owner"       : "' + bot.commons["owner"] + '",\n'
             + '   "support"     : "' + bot.commons["support"] + '",\n'

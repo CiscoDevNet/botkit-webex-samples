@@ -51,7 +51,7 @@ var Events = require("./events.js");
 //
 // Command: now
 //
-controller.hears(['now', 'current'], 'direct_message,direct_mention,mention', function (bot, message) {
+controller.hears(['now', 'current'], 'direct_message,direct_mention', function (bot, message) {
 
     bot.reply(message, "_heard you! let's check what's happening now..._");
 
@@ -78,7 +78,7 @@ controller.hears(['now', 'current'], 'direct_message,direct_mention,mention', fu
 //
 // Command: next
 //
-controller.hears(['next\s*(.*)', 'upcomings*(.*)', 'events*(.*)'], 'direct_message,direct_mention,mention', function (bot, message) {
+controller.hears(['next\s*(.*)', 'upcomings*(.*)', 'events*(.*)'], 'direct_message,direct_mention', function (bot, message) {
 
     bot.reply(message, "_heard you! asking my crystal ball..._");
 
@@ -186,7 +186,7 @@ controller.hears(['show\s*(.*)', 'more\s*(.*)', 'about\s*(.*)'], 'direct_message
 //
 // Command: help
 //
-controller.hears(["help", "who are you"], 'direct_message,direct_mention,mention', function (bot, message) {
+controller.hears(["help", "who are you"], 'direct_message,direct_mention', function (bot, message) {
     var text = "I am a bot, can help you find current and upcoming events at [Cisco DevNet](https://developer.cisco.com)\n\nCommands I understand: now, next [max], about [index]";
     bot.reply(message, text);
 });
@@ -195,7 +195,7 @@ controller.hears(["help", "who are you"], 'direct_message,direct_mention,mention
 //
 // Command: fallback
 //
-controller.hears(["(.*)"], 'direct_message,direct_mention,mention', function (bot, message) {
+controller.hears(["(.*)"], 'direct_message,direct_mention', function (bot, message) {
     var text = "Sorry I did not understand, please type: help, now or next";
     bot.reply(message, text);
 });

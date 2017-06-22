@@ -69,7 +69,7 @@ controller.hears(['^hello'], 'direct_message,direct_mention', function(bot, mess
 // Fallback command
 //
 controller.hears(['(.*)'], 'direct_message,direct_mention', function (bot, message) {
-    bot.reply(message, "sorry, I did not understand, please type:\n- hello\n- help\n" );
+    bot.reply(message, "sorry, I did not understand.<br/>Type help for supported skills." );
 });
 
 
