@@ -1,7 +1,6 @@
 {
-  "name": "botkit-template",
-  "version": "0.1.0",
-  "description": "BotKit Template for Cisco Spark",
+  "description": "BotKit template for Cisco Spark",
+  "version": "1.0.0",
   "main": "bot.js",
   "keywords": [
     "ciscospark",
@@ -12,6 +11,6 @@
   "license": "MIT",
   "dependencies": {
     "botkit": "0.5.4",
-    "node-env-file": "^0.1.8"
+    "node-env-file": "0.1.8"
   }
 }

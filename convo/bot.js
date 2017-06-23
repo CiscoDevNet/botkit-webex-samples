@@ -38,7 +38,7 @@ var controller = Botkit.sparkbot({
     public_address: process.env.PUBLIC_URL,
     ciscospark_access_token: process.env.SPARK_TOKEN,
     secret: process.env.SECRET, // this is a RECOMMENDED security setting that checks of incoming payloads originate from Cisco Spark
-    webhook_name: (process.env.BOT_NICKNAME || 'built with botkit') + ' (' + env + ')'
+    webhook_name: process.env.WEBHOOK_NAME || ('built with BotKit (' + env + ')')
 });
 
 var bot = controller.spawn({
@@ -73,6 +73,7 @@ var normalizedPath = require("path").join(__dirname, "skills");
 require("fs").readdirSync(normalizedPath).forEach(function (file) {
     try {
         require("./skills/" + file)(controller);
+        console.log("Cisco Spark: loaded skill: " + file);
     }
     catch (err) {
         if (err.code == "MODULE_NOT_FOUND") {

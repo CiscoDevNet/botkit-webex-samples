@@ -32,9 +32,10 @@ var Botkit = require('botkit');
 var controller = Botkit.sparkbot({
     debug: false,
     log: true,
-    public_address: process.env.public_address,
-    ciscospark_access_token: process.env.access_token,
-    studio_token: process.env.studio_token,
+    public_address: process.env.PUBLIC_URL,
+    ciscospark_access_token: process.env.SPARK_TOKEN,
+    studio_token: process.env.STUDIO_TOKEN,
+    webhook_name: process.env.WEBHOOK_NAME || 'built with BotKit (development)'
 });
 
 
