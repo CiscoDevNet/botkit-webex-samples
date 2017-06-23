@@ -39,7 +39,7 @@ Read the [Starter Guide](https://github.com/ObjectIsAdvantag/hackathon-resources
 
 
 
-## Hello World
+## Hello World (command)
 
 Simplest bot [you can code](helloworld.js#L62): simply echoes a message with a mention of the Cisco Spark user that mentionned him.
 
@@ -57,7 +57,15 @@ Below, the Hello bot (impersonnated via the Playground bot token) helling the Ci
 
 
 
-## Emoji
+# Template to bootstap a BotKit project for Cisco Spark
+
+The [template](template/README.md) regroups a set of best practices:
+- configuration: pass settings either through environment variables on the command line, or by hardcoding some of them in the `.env` file. Note that env variable are priorized over the `env`file if values are found in both places.
+- healthcheck: check if everything is going well by hitting the `ping` endpoint exposed automatically. 
+- skills: organize your bot behaviours by placing 'hear commands', 'convos' and 'events' in the [skills directory](skills/README.md). The bot comes with a ".commons", "help", "fallback" and "welcome" skills.
+
+
+## Emoji (websocket)
 
 This [bot turns emoji tags](emoji.js#58) to unicode characters and posts back the 'emojified' phrase
 
@@ -82,11 +90,19 @@ From a Windows shell, type:
 ![emoji](docs/img/emoji-websocket.png)
 
 
+## Conversations demo bot (convo)
 
-## CiscoDevNet events
+A [conversational bot](convo/README.md) that illustrates BotKit conversation system through examples.
 
-This bot illustrates how you can [create conversations](sample-externalapi/bot.js#L117),
-and uses a [wrapper to an external API](sample-externalapi/events.js) hosted on Heroku that lists current and upcoming events at DevNet.
+The bot is built with the [template provided in this repo](template/README.md).
+
+![convo](docs/img/convo.png)
+
+
+
+## DevNet events (external api invocation)
+
+This bot illustrates how you can [create conversations](externalapi/bot.js#L117),
+and uses a [wrapper to an external API](externalapi/events.js) hosted on Heroku that lists current and upcoming events at DevNet.
 
 ![devnet-botkit](docs/img/devnet-botkit-convo.png)
-
