@@ -31,7 +31,7 @@ var controller = Botkit.sparkbot({
     public_address: process.env.PUBLIC_URL,
     ciscospark_access_token: process.env.SPARK_TOKEN,
     secret: process.env.SECRET, // this is a RECOMMENDED security setting that checks of incoming payloads originate from Cisco Spark
-    webhook_name: 'Cisco DevNet events with BotKit (dev)',
+    webhook_name: process.env.WEBHOOK_NAME || 'built with BotKit (development)'
 });
 
 var bot = controller.spawn({
