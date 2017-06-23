@@ -1,7 +1,38 @@
 # BotKit samples for Cisco Spark
 
-Assuming your bot is accessible from the internet or you exposed it via a tunnelling tool such as [ngrok](https://ngrok.com),
-you can run any sample in a snatch:
+This community project driven regroups:
+- Cisco Spark bot samples built with Howdy.ai BotKit framework, 
+- a template to quickly bootstrap your bot project and reuse bot skills,
+- an experimental websocket usage example
+
+We suggest you start with the Hello World bot below.
+
+**New to BotKit?**
+Read the [BotKit for CiscoSpark Guide](https://github.com/howdyai/botkit/blob/master/docs/readme-ciscospark.md)
+
+**New to CiscoSpark?**
+Read the [Starter Guide](https://github.com/ObjectIsAdvantag/hackathon-resources#cisco-spark-starter-guide-chat-calls-meetings) we use at hackathon. Or go straight to [Spark4Devs](https://developer.ciscospark.com), signin and click [My apps](https://developer.ciscospark.com/apps.html) to create a bot account.
+
+
+## Hello World (bot command)
+
+Simplest bot [you can code](helloworld.js#L62): simply echoes a message with a mention of the Cisco Spark user that mentionned him.
+
+![hello-bot-direct](docs/img/hello-bot-direct.png)
+
+And don't forget to mention him in group rooms.
+
+![hello-bot-group](docs/img/hello-bot-group.png)
+
+Note that the bot will respond to anyone mentioning him,
+then no reason why he could not chat with other bots.
+Below, the Hello bot (impersonnated via the Playground bot token) helling the CiscoDevNet bot.
+
+![hello-bot-playing](docs/img/hello-bot-playing.png)
+
+Assuming your bot is accessible from the internet or you exposed it via a tunneling tool such as [ngrok](https://ngrok.com), you can run any sample in a snatch:
+
+### How to run 
 
 From a bash shell, type:
 
@@ -31,38 +62,30 @@ where:
 - SECRET is the secret that Cisco Spark uses to sign the JSON webhooks events posted to your bot
 - [ngrok](http://ngrok.com) helps you expose the bot running on your laptop to the internet, type: `ngrok http 8080` to launch
 
-**New to BotKit?**
-Read the [BotKit for CiscoSpark Guide](https://github.com/howdyai/botkit/blob/master/docs/readme-ciscospark.md)
 
-**New to CiscoSpark?**
-Read the [Starter Guide](https://github.com/ObjectIsAdvantag/hackathon-resources#cisco-spark-starter-guide-chat-calls-meetings) we use at hackathon. Or go straight to [Spark4Devs](https://developer.ciscospark.com), signin and click [My apps](https://developer.ciscospark.com/apps.html) to create a bot account.
-
-
-
-## Hello World (command)
-
-Simplest bot [you can code](helloworld.js#L62): simply echoes a message with a mention of the Cisco Spark user that mentionned him.
-
-![hello-bot-direct](docs/img/hello-bot-direct.png)
-
-And don't forget to mention him in group rooms.
-
-![hello-bot-group](docs/img/hello-bot-group.png)
-
-Note that the bot will respond to anyone mentioning him,
-then no reason why he could not chat with other bots.
-Below, the Hello bot (impersonnated via the Playground bot token) helling the CiscoDevNet bot.
-
-![hello-bot-playing](docs/img/hello-bot-playing.png)
-
-
-
-# Template to bootstap a BotKit project for Cisco Spark
+## Bootstap a BotKit project for Cisco Spark (template)
 
 The [template](template/README.md) regroups a set of best practices:
 - configuration: pass settings either through environment variables on the command line, or by hardcoding some of them in the `.env` file. Note that env variable are priorized over the `env`file if values are found in both places.
 - healthcheck: check if everything is going well by hitting the `ping` endpoint exposed automatically. 
 - skills: organize your bot behaviours by placing 'hear commands', 'convos' and 'events' in the [skills directory](skills/README.md). The bot comes with a ".commons", "help", "fallback" and "welcome" skills.
+
+
+## Conversations demo bot (convo)
+
+A [conversational bot](convo/README.md) that illustrates BotKit conversation system through examples.
+
+The bot is built with the [template provided in this repo](template/README.md).
+
+![convo](docs/img/convo.png)
+
+
+## DevNet events (external api invocation)
+
+This bot illustrates how you can [create conversations](externalapi/bot.js#L117),
+and uses a [wrapper to an external API](externalapi/events.js) hosted on Heroku that lists current and upcoming events at DevNet.
+
+![devnet-botkit](docs/img/devnet-botkit-convo.png)
 
 
 ## Emoji (websocket)
@@ -88,21 +111,3 @@ From a Windows shell, type:
 ```
 
 ![emoji](docs/img/emoji-websocket.png)
-
-
-## Conversations demo bot (convo)
-
-A [conversational bot](convo/README.md) that illustrates BotKit conversation system through examples.
-
-The bot is built with the [template provided in this repo](template/README.md).
-
-![convo](docs/img/convo.png)
-
-
-
-## DevNet events (external api invocation)
-
-This bot illustrates how you can [create conversations](externalapi/bot.js#L117),
-and uses a [wrapper to an external API](externalapi/events.js) hosted on Heroku that lists current and upcoming events at DevNet.
-
-![devnet-botkit](docs/img/devnet-botkit-convo.png)
