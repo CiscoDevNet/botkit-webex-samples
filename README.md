@@ -63,19 +63,19 @@ where:
 - [ngrok](http://ngrok.com) helps you expose the bot running on your laptop to the internet, type: `ngrok http 8080` to launch
 
 
-## Bootstap a BotKit project for Cisco Spark (template)
+## Bootstrap a BotKit project for Cisco Spark (template)
 
-The [template](template/README.md) regroups a set of best practices:
+The [template](template/) regroups a set of best practices:
 - configuration: pass settings either through environment variables on the command line, or by hardcoding some of them in the `.env` file. Note that env variable are priorized over the `env`file if values are found in both places.
 - healthcheck: check if everything is going well by hitting the `ping` endpoint exposed automatically. 
-- skills: organize your bot behaviours by placing 'hear commands', 'convos' and 'events' in the [skills directory](skills/README.md). The bot comes with a ".commons", "help", "fallback" and "welcome" skills.
+- skills: organize your bot behaviours by placing 'hear commands', 'convos' and 'events' in the [skills directory](template/skills/). The bot comes with a ".commons", "help", "fallback" and "welcome" skills.
 
 
 ## Conversations demo bot (convo)
 
-A [conversational bot](convo/README.md) that illustrates BotKit conversation system through examples.
+A [conversational bot](convo/) that illustrates BotKit conversation system through examples. The bot is built with the [template provided in this repo](template/).
 
-The bot is built with the [template provided in this repo](template/README.md).
+You can test the bot live by inviting `convos@sparkbot.io` to a Cisco Spark space.
 
 ![convo](docs/img/convo.png)
 
