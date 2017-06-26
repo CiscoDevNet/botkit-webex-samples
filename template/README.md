@@ -34,7 +34,9 @@ you can run this template in a snatch.
     git clone https://github.com/CiscoDevNet/botkit-ciscospark-samples
     cd botkit-ciscospark-samples/template
     npm install
-    SPARK_TOKEN=0123456789abcdef PUBLIC_URL=https://abcdef.ngrok.io node bot.js
+    SPARK_TOKEN=0123456789abcdef
+    PUBLIC_URL=https://abcdef.ngrok.io
+    node bot.js
     ```
 
     From a windows shell:
