@@ -31,10 +31,12 @@ you can run this template in a snatch.
     From a bash shell:
 
     ```shell
-    git clone https://github.com/botkit-ciscospark-samples
-    cd template
+    git clone https://github.com/CiscoDevNet/botkit-ciscospark-samples
+    cd botkit-ciscospark-samples/template
     npm install
-    SPARK_TOKEN=0123456789abcdef PUBLIC_URL=https://abcdef.ngrok.io node bot.js
+    SPARK_TOKEN=0123456789abcdef
+    PUBLIC_URL=https://abcdef.ngrok.io
+    node bot.js
     ```
 
     From a windows shell:
