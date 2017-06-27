@@ -71,13 +71,13 @@ The [template](template/) regroups a set of best practices:
 - skills: organize your bot behaviours by placing 'hear commands', 'convos' and 'events' in the [skills directory](template/skills/). The bot comes with a ".commons", "help", "fallback" and "welcome" skills.
 
 
-## Conversations demo bot (convo)
+## Conversations demo bot (convos)
 
-A [conversational bot](convo/) that illustrates BotKit conversation system through examples. The bot is built with the [template provided in this repo](template/).
+A [conversational bot](convos/) that illustrates BotKit conversation system through examples. The bot is built with the [template provided in this repo](template/).
 
 You can test the bot live by inviting `convos@sparkbot.io` to a Cisco Spark space.
 
-![convo](docs/img/convo.png)
+![convos](docs/img/convos.png)
 
 
 ## DevNet events (external api invocation)

@@ -6,4 +6,4 @@ Open the [skills](skills/) folder to see the code of each invidiual skills.
 
 You can also check the [template README](../template) to learn about the code structure, and how to run the bot.
 
-![convo](../docs/img/convo.png)
+![convos](../docs/img/convos.png)
