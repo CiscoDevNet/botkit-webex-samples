@@ -1,6 +1,6 @@
 {
   "description": "BotKit template for Cisco Spark",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "bot.js",
   "scripts": {
     "start": "node bot.js"
@@ -13,7 +13,7 @@
   "author": "Stève Sfartz (Cisco DevNet) <stsfartz@cisco.com>",
   "license": "MIT",
   "dependencies": {
-    "botkit": "0.5.4",
+    "botkit": "0.5.5",
     "node-env-file": "0.1.8"
   }
 }
