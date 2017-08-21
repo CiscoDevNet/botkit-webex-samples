@@ -8,7 +8,7 @@ module.exports = function (controller) {
 
     controller.hears(['cheese'], 'direct_message,direct_mention', function (bot, message) {
 
-        bot.createConversation(message, function (err, convo) {
+        bot.startConversation(message, function (err, convo) {
 
             // create a path for when a user says YES
             convo.addMessage({
@@ -50,8 +50,6 @@ module.exports = function (controller) {
                     },
                 }
             ]);
-
-            convo.activate();
 
             // capture the results of the conversation and see what happened...
             convo.on('end', function (convo) {

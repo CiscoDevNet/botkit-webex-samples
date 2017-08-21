@@ -10,7 +10,7 @@ module.exports = function (controller) {
 
     controller.hears(['drink'], 'direct_message,direct_mention', function (bot, message) {
 
-        bot.createConversation(message, function (err, convo) {
+        bot.startConversation(message, function (err, convo) {
             convo.addQuestion('What would you like to drink?', function (response, convo) {
                 convo.say('I love ' + response.text + ' too');
                 convo.next();
@@ -46,8 +46,6 @@ module.exports = function (controller) {
                     }
                 }
             ]);
-
-            convo.activate();
         });
     });
 };

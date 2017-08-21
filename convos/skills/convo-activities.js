@@ -12,7 +12,7 @@ module.exports = function (controller) {
 
     controller.hears(['activities'], 'direct_message,direct_mention', function (bot, message) {
 
-        bot.createConversation(message, function (err, convo) {
+        bot.startConversation(message, function (err, convo) {
             var question = "Here are a few proposed DevNet activities:";
             question += "<br/> `1)` join a Community Of Interest (**communities**)";
             question += "<br/> `2)` take a Learning Lab (**labs**)";
@@ -57,8 +57,6 @@ module.exports = function (controller) {
                     }
                 }
             ]);
-
-            convo.activate();
         });
     });
 };

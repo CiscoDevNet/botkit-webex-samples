@@ -6,7 +6,7 @@ module.exports = function (controller) {
 
     controller.hears(['quiz'], 'direct_message,direct_mention', function (bot, message) {
 
-        bot.createConversation(message, function (err, convo) {
+        bot.startConversation(message, function (err, convo) {
 
             // Default thread
             convo.ask("Ready for a challenge (yes/no/cancel)", [
@@ -54,7 +54,6 @@ module.exports = function (controller) {
 
             // Quiz thread
             convo.addMessage("Let's start", "quiz");
-
             var challenge = pickChallenge();
             convo.addQuestion("Question: " + challenge.question, [
                 {
@@ -84,8 +83,6 @@ module.exports = function (controller) {
 
             // Missed thread
             convo.addMessage("Time elapsed! you missed it, sorry.", "missed");
-
-            convo.activate();
         });
     });
 };
