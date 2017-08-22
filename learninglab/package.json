@@ -1,5 +1,5 @@
 {
-  "description": "BotKit template for Cisco Spark",
+  "description": "Bot companion to the DevNet Learning lab",
   "version": "0.1.0",
   "main": "bot.js",
   "scripts": {
