@@ -1,14 +1,14 @@
 # BotKit samples for Cisco Spark
 
 This community project driven regroups:
-- Cisco Spark bot samples built with Howdy.ai BotKit framework, 
+- Cisco Spark bot samples built with Howdy.ai Botkit framework, 
 - a template to quickly bootstrap your bot project and reuse bot skills,
 - an experimental websocket usage example
 
 We suggest you start with the Hello World bot below.
 
-**New to BotKit?**
-Read the [BotKit for CiscoSpark Guide](https://github.com/howdyai/botkit/blob/master/docs/readme-ciscospark.md)
+**New to Botkit?**
+Read the [Botkit for CiscoSpark Guide](https://github.com/howdyai/botkit/blob/master/docs/readme-ciscospark.md)
 
 **New to CiscoSpark?**
 Read the [Starter Guide](https://github.com/ObjectIsAdvantag/hackathon-resources#cisco-spark-starter-guide-chat-calls-meetings) we use at hackathon. Or go straight to [Spark4Devs](https://developer.ciscospark.com), signin and click [My apps](https://developer.ciscospark.com/apps.html) to create a bot account.
@@ -63,7 +63,7 @@ where:
 - [ngrok](http://ngrok.com) helps you expose the bot running on your laptop to the internet, type: `ngrok http 8080` to launch
 
 
-## Bootstrap a BotKit project for Cisco Spark (template)
+## Bootstrap a Botkit project for Cisco Spark (template)
 
 The [template](template/) regroups a set of best practices:
 - configuration: pass settings either through environment variables on the command line, or by hardcoding some of them in the `.env` file. Note that env variable are priorized over the `env`file if values are found in both places.
@@ -73,7 +73,7 @@ The [template](template/) regroups a set of best practices:
 
 ## Conversations demo bot (convos)
 
-A [conversational bot](convos/) that illustrates BotKit conversation system through examples. The bot is built with the [template provided in this repo](template/).
+A [conversational bot](convos/) that illustrates Botkit conversation system through examples. The bot is built with the [template provided in this repo](template/).
 
 You can test the bot live by inviting `convos@sparkbot.io` to a Cisco Spark space.
 
@@ -85,7 +85,7 @@ You can test the bot live by inviting `convos@sparkbot.io` to a Cisco Spark spac
 This bot illustrates how you can [create conversations](externalapi/bot.js#L117),
 and uses a [wrapper to an external API](externalapi/events.js) hosted on Heroku that lists current and upcoming events at DevNet.
 
-![devnet-botkit](docs/img/devnet-botkit-convo.png)
+![devnet-Botkit](docs/img/devnet-botkit-convo.png)
 
 
 ## Emoji (websocket)

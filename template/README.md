@@ -1,4 +1,4 @@
-# Template to bootstrap a BotKit project for Cisco Spark
+# Template to bootstrap a Botkit project for Cisco Spark
 
 This template regroups a set of best practices:
 - configuration: pass settings either through environment variables on the command line, or by hardcoding some of them in the `.env` file. Note that env variable are priorized over the `env`file if values are found in both places.
