@@ -1,5 +1,10 @@
+//
+// Copyright (c) 2017 Cisco Systems
+// Licensed under the MIT License 
+//
+
 /**
- * Cisco Spark WebSocket example using BotKit
+ * Cisco Spark WebSocket example using Botkit
  */
 
 var accessToken = process.env.SPARK_TOKEN;

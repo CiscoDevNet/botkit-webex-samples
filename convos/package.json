@@ -1,6 +1,6 @@
 {
   "name": "botkit-convos",
-  "description": "BotKit conversation examples for Cisco Spark",
+  "description": "Botkit conversation examples for Cisco Spark",
   "version": "1.0.0",
   "main": "bot.js",
   "keywords": [
@@ -11,7 +11,7 @@
   "author": "Stève Sfartz (Cisco DevNet) <stsfartz@cisco.com>",
   "license": "MIT",
   "dependencies": {
-    "botkit": "0.5.4",
-    "node-env-file": "0.1.8"
+    "botkit": "^0.5.7",
+    "node-env-file": "^0.1.8"
   }
 }
