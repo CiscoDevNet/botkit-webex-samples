@@ -1,4 +1,4 @@
-# BotKit samples for Cisco Spark
+# Botkit Samples for Cisco Spark
 
 This community project driven regroups:
 - Cisco Spark bot samples built with Howdy.ai Botkit framework, 
@@ -8,10 +8,12 @@ This community project driven regroups:
 We suggest you start with the Hello World bot below.
 
 **New to Botkit?**
-Read the [Botkit for CiscoSpark Guide](https://github.com/howdyai/botkit/blob/master/docs/readme-ciscospark.md)
+- read the ["Botkit for CiscoSpark" guide](https://github.com/howdyai/botkit/blob/master/docs/readme-ciscospark.md)
+- take the ["Create Conversational Bots with Botkit" learning lab](https://learninglabs.cisco.com/tracks/collab-cloud/spark-apps/collab-spark-botkit/step/1)
 
-**New to CiscoSpark?**
-Read the [Starter Guide](https://github.com/ObjectIsAdvantag/hackathon-resources#cisco-spark-starter-guide-chat-calls-meetings) we use at hackathon. Or go straight to [Spark4Devs](https://developer.ciscospark.com), signin and click [My apps](https://developer.ciscospark.com/apps.html) to create a bot account.
+**New to Cisco Spark?**
+- read the [Starter Guide](https://github.com/ObjectIsAdvantag/hackathon-resources#cisco-spark-starter-guide-chat-calls-meetings) we use at hackathon,
+- or go straight to [Spark4Devs](https://developer.ciscospark.com), signin and click [My apps](https://developer.ciscospark.com/apps.html) to create a bot account.
 
 
 ## Hello World (bot command)

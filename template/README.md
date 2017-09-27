@@ -1,9 +1,15 @@
 # Template to bootstrap a Botkit project for Cisco Spark
 
-This template regroups a set of best practices:
+This template regroups a set of good practices:
+
 - configuration: pass settings either through environment variables on the command line, or by hardcoding some of them in the `.env` file. Note that env variable are priorized over the `env`file if values are found in both places.
+
 - healthcheck: check if everything is going well by hitting the `ping` endpoint exposed automatically. 
+
 - skills: organize your bot behaviours by placing 'hear commands', 'convos' and 'events' in the [skills directory](skills/README.md). The bot comes with a ".commons", "help", "fallback" and "welcome" skills.
+
+Check the ["CiscoDevNet Botkit template"](https://github.com/CiscoDevNet/botkit-template) repo branches for more advanced templates: [Redis](https://github.com/CiscoDevNet/botkit-template/tree/redis), [Pluggable](https://github.com/CiscoDevNet/botkit-template/tree/plugin) branches.
+
 
 ## How to run
 
@@ -32,6 +38,7 @@ you can run this template in a snatch.
 
     ```shell
     git clone https://github.com/CiscoDevNet/botkit-ciscospark-samples
+    cd botkit-ciscospark-samples
     cd template
     npm install
     SPARK_TOKEN=0123456789abcdef PUBLIC_URL=https://abcdef.ngrok.io node bot.js
@@ -40,12 +47,13 @@ you can run this template in a snatch.
     From a windows shell:
 
     ```shell
-    > git clone https://github.com/CiscoDevNet/botkit-ciscospark-samples
-    > cd template
-    > npm install
-    > set SPARK_TOKEN=0123456789abcdef
-    > set PUBLIC_URL=https://abcdef.ngrok.io
-    > node bot.js
+    git clone https://github.com/CiscoDevNet/botkit-ciscospark-samples
+    cd botkit-ciscospark-samples
+    cd template
+    npm install
+    set SPARK_TOKEN=0123456789abcdef
+    set PUBLIC_URL=https://abcdef.ngrok.io
+    node bot.js
     ```
 
     where:
