@@ -1,0 +1,11 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.7.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:debug:20170905':
+    - botkit > localtunnel > debug:
+        patched: '2017-10-12T22:59:26.886Z'
+  'npm:ms:20170412':
+    - botkit > twilio > jsonwebtoken > ms:
+        patched: '2017-10-12T22:59:26.886Z'
