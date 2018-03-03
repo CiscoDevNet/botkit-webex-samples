@@ -1,0 +1,22 @@
+{
+  "description": "Displays PeopleCount data from a RoomKit device",
+  "version": "1.0.0",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "keywords": [
+    "ciscospark",
+    "botkit",
+    "devnet",
+    "roomkit",
+    "jsxapi"
+  ],
+  "author": "Stève Sfartz (Cisco DevNet) <stsfartz@cisco.com>",
+  "license": "MIT",
+  "dependencies": {
+    "botkit": "^0.5.7",
+    "jsxapi": "^4.0.1",
+    "node-env-file": "^0.1.8"
+  }
+}
