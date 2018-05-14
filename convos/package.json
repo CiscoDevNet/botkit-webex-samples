@@ -1,17 +1,18 @@
 {
   "name": "botkit-convos",
-  "description": "Botkit conversation examples for Cisco Spark",
-  "version": "1.0.0",
+  "description": "Botkit conversation examples for Webex Teams",
+  "version": "1.0.1",
   "main": "bot.js",
   "keywords": [
-    "ciscospark",
+    "webex",
+    "webex-teams",
     "botkit",
     "devnet"
   ],
   "author": "Stève Sfartz (Cisco DevNet) <stsfartz@cisco.com>",
   "license": "MIT",
   "dependencies": {
-    "botkit": "^0.5.7",
+    "botkit": "^0.6.14",
     "node-env-file": "^0.1.8"
   }
 }

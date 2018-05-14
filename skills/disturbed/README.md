@@ -1,4 +1,4 @@
-# BotKit convo onTimeout sample
+# Botkit convo onTimeout sample
 
 ## Timeout elapsed 2 times
 

@@ -1,4 +1,4 @@
-# Template to bootstrap a Botkit project for Cisco Spark
+# Template to bootstrap a Botkit project for Webex Teams
 
 This template regroups a set of good practices:
 
@@ -8,7 +8,7 @@ This template regroups a set of good practices:
 
 - skills: organize your bot behaviours by placing 'hear commands', 'convos' and 'events' in the [skills directory](skills/README.md). The bot comes with a ".commons", "help", "fallback" and "welcome" skills.
 
-Check the ["CiscoDevNet Botkit template"](https://github.com/CiscoDevNet/botkit-template) repo branches for more advanced templates: [Redis](https://github.com/CiscoDevNet/botkit-template/tree/redis), [Pluggable](https://github.com/CiscoDevNet/botkit-template/tree/plugin) branches.
+**Advanced users: check the ["CiscoDevNet Botkit template"](https://github.com/CiscoDevNet/botkit-template) repo branches for more advanced templates: [Redis](https://github.com/CiscoDevNet/botkit-template/tree/redis), [Pluggable](https://github.com/CiscoDevNet/botkit-template/tree/plugin) branches.**
 
 
 ## How to run
@@ -16,7 +16,7 @@ Check the ["CiscoDevNet Botkit template"](https://github.com/CiscoDevNet/botkit-
 Assuming you plan to expose your bot via [ngrok](https://ngrok.com),
 you can run this template in a snatch.
 
-1. Create a Bot Account from the ['Spark for developers' bot creation page](https://developer.ciscospark.com/add-bot.html), and copy your bot's access token.
+1. Create a Bot Account from ['Webex for developers'](https://developer.webex.com/add-bot.html), and copy your bot's access token.
 
 1. Launch ngrok to expose port 3000 of your local machine to the internet:
 
@@ -34,7 +34,7 @@ you can run this template in a snatch.
 
 1. You're ready to run your bot
 
-    From a bash shell:
+    From a Mac/Linux bash shell:
 
     ```shell
     git clone https://github.com/CiscoDevNet/botkit-ciscospark-samples
@@ -44,7 +44,7 @@ you can run this template in a snatch.
     SPARK_TOKEN=0123456789abcdef PUBLIC_URL=https://abcdef.ngrok.io node bot.js
     ```
 
-    From a windows shell:
+    From a Windows shell:
 
     ```shell
     git clone https://github.com/CiscoDevNet/botkit-ciscospark-samples

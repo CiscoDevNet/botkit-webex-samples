@@ -15,7 +15,7 @@ Command line example for (Mac/Linux) bash users
 REDIS_URL=redis://localhost:6379 PUBLIC_URL=https://55454daa.ngrok.io SPARK_TOKEN=0123456789ABCDEFGHIJ node bot.js
 ```
 
-From a Windows machine, type:
+From a Windows command shell, type:
 ```shell
 set REDIS_URL=redis://localhost:6379
 set PUBLIC_URL=https://55454daa.ngrok.io
