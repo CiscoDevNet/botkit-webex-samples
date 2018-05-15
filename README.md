@@ -42,7 +42,7 @@ From a Mac/Linux bash shell, type:
 > git clone https://github.com/CiscoDevNet/botkit-webex-samples
 > cd botkit-webex-samples
 > npm install
-> SPARK_TOKEN=0123456789abcdef PUBLIC_URL=https://abcdef.ngrok.io SECRET="not that secret" node helloworld.js
+> ACCESS_TOKEN=0123456789abcdef PUBLIC_URL=https://abcdef.ngrok.io SECRET="not that secret" node helloworld.js
 ```
 
 From a Windows CMD shell, type:
@@ -51,7 +51,7 @@ From a Windows CMD shell, type:
 > git clone https://github.com/CiscoDevNet/botkit-webex-samples
 > cd botkit-webex-samples
 > npm install
-> set SPARK_TOKEN=0123456789abcdef
+> set ACCESS_TOKEN=0123456789abcdef
 > set PUBLIC_URL=https://abcdef.ngrok.io
 > set SECRET=not that secret
 > node helloworld.js
@@ -59,7 +59,7 @@ From a Windows CMD shell, type:
 
 where:
 
-- SPARK_TOKEN is the API access token of your Webex Teams bot
+- ACCESS_TOKEN is the API access token of your Webex Teams bot
 - PUBLIC_URL is the root URL at which the Webex Cloud platform can reach your bot
 - SECRET is the secret that Webex uses to sign the JSON webhooks events posted to your bot
 - [ngrok](http://ngrok.com) helps you expose the bot running on your laptop to the internet, type: `ngrok http 8080` to launch
@@ -101,14 +101,14 @@ From a Mac/Linux bash shell, type:
 
 ```shell
 > npm install
-> SPARK_TOKEN=0123456789abcdef node emoji.js
+> ACCESS_TOKEN=0123456789abcdef node emoji.js
 ```
 
 From a Windows shell, type:
 
 ```shell
 > npm install
-> set SPARK_TOKEN=0123456789abcdef
+> set ACCESS_TOKEN=0123456789abcdef
 > node emoji.js
 ```
 
