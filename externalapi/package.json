@@ -1,6 +1,6 @@
 {
   "name": "devnet-events",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Botkit sample that invokes an external API",
   "main": "bot.js",
   "keywords": [

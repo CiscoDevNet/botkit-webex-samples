@@ -1,6 +1,6 @@
 # Botkit Conversations
 
-**Note that you can try the bot live by inviting the convos@sparkbot.io bot to a Webex Teams space.**
+**Note that you can try the bot live by inviting the `convos@sparkbot.io` bot to join a Webex Teams space.**
 
 Open the [skills](skills/) folder to see the code of each invidiual skills.
 

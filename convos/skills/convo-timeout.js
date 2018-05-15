@@ -1,5 +1,5 @@
 //
-// timeout: shows how BotKit timeouts behave in a conversation
+// timeout: shows how Botkit timeouts behave in a conversation
 //
 // https://github.com/howdyai/botkit/blob/master/docs/readme.md#handling-conversation-timeouts
 //

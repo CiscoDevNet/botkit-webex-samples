@@ -4,17 +4,20 @@
 //
 
 /* 
- * a Cisco Spark bot that lists upcoming events at Cisco DevNet
+ * a bot that lists upcoming events at Cisco DevNet
  * 
  */
 
 var Botkit = require('botkit');
 
-if (!process.env.SPARK_TOKEN) {
-    console.log("Could not start as this bot requires a Cisco Spark API access token.");
-    console.log("Please add env variable SPARK_TOKEN on the command line");
+// Fetch token from environement
+// [COMPAT] supports SPARK_TOKEN for backward compatibility
+var accessToken = process.env.ACCESS_TOKEN || process.env.SPARK_TOKEN 
+if (!accessToken) {
+    console.log("Could not start as this bot requires a Webex Teams API access token.");
+    console.log("Please invoke with an ACCESS_TOKEN environment variable");
     console.log("Example: ");
-    console.log("> SPARK_TOKEN=XXXXXXXXXXXX PUBLIC_URL=YYYYYYYYYYYYY node helloworld.js");
+    console.log("> ACCESS_TOKEN=XXXXXXXXXXXX PUBLIC_URL=YYYYYYYYYYYYY node helloworld.js");
     process.exit(1);
 }
 
@@ -22,15 +25,15 @@ if (!process.env.PUBLIC_URL) {
     console.log("Could not start as this bot must expose a public endpoint.");
     console.log("Please add env variable PUBLIC_URL on the command line");
     console.log("Example: ");
-    console.log("> SPARK_TOKEN=XXXXXXXXXXXX PUBLIC_URL=YYYYYYYYYYYYY node helloworld.js");
+    console.log("> ACCESS_TOKEN=XXXXXXXXXXXX PUBLIC_URL=YYYYYYYYYYYYY node helloworld.js");
     process.exit(1);
 }
 
 var controller = Botkit.sparkbot({
     log: true,
     public_address: process.env.PUBLIC_URL,
-    ciscospark_access_token: process.env.SPARK_TOKEN,
-    secret: process.env.SECRET, // this is a RECOMMENDED security setting that checks of incoming payloads originate from Cisco Spark
+    ciscospark_access_token: accessToken,
+    secret: process.env.SECRET, // this is a RECOMMENDED security setting that checks of incoming payloads originate from Webex
     webhook_name: process.env.WEBHOOK_NAME || 'built with BotKit (development)'
 });
 
@@ -39,7 +42,7 @@ var bot = controller.spawn({
 
 controller.setupWebserver(process.env.PORT || 3000, function(err, webserver) {
     controller.createWebhookEndpoints(webserver, bot, function() {
-        console.log("SPARK: Webhooks set up!");
+        console.log("Webhooks set up!");
     });
 });
 

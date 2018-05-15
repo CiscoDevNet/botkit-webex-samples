@@ -5,20 +5,23 @@
 //
 // Returns 
 //   - true if the conversation can proceed
-//   - false if we sent an access denied message
+//   - false if access is denied
 //
+
+const debug = require("debug")("peoplecount");
+
 module.exports = function (bot, message) {
     // Is there a user that can invoke the bot in any space
     if (process.env.GRANTED_EMAIL) {
-        if (message.original_message.personEmail == process.env.GRANTED_EMAIL) {
-            debug(`granting access, user asking is the authorized person: ${process.env.GRANTED_EMAIL}`);
+        if (message.user == process.env.GRANTED_EMAIL) {
+            debug(`access granted, user asking is the authorized person: ${process.env.GRANTED_EMAIL}`);
             return true;
         }
     }
 
     // Check if the bot must be invoked in a reserved space
-    if (process.env.RESTRICITED_SPACE) {
-        if (message.channel !== process.env.RESTRICITED_SPACE) {
+    if (process.env.RESTRICTED_SPACE) {
+        if (message.channel !== process.env.RESTRICTED_SPACE) {
             debug(`access not granted, user asking not in the space with id: : ${process.env.RESTRICITED_SPACE}`);
             bot.reply(message, `Sorry buddy, I don't talk to strangers.`);
             return false;

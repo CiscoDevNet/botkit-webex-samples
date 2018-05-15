@@ -1,7 +1,7 @@
 {
   "name": "botkit-redis",
   "description": "Botkit example for Webex Teams with Redis storage",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "main": "bot.js",
   "keywords": [
     "webex",

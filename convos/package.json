@@ -1,7 +1,7 @@
 {
   "name": "botkit-convos",
   "description": "Botkit conversation examples for Webex Teams",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "main": "bot.js",
   "keywords": [
     "webex",

@@ -32,7 +32,7 @@ module.exports = function (controller) {
                 , {
                     pattern: "3|event|express",
                     callback: function (response, convo) {
-                        convo.say("Nothing's like meeting in person at a conference, training or a hackathon. Check the list of [DevNet events](https://developer.cisco.com/site/devnet/events-contests/events/) or ask the bot: invite `CiscoDevNet@sparkbot.io` to chat in a Cisco Spark space.");
+                        convo.say("Nothing's like meeting in person at a conference, training or a hackathon. Check the list of [DevNet events](https://developer.cisco.com/site/devnet/events-contests/events/) or ask the bot: invite `CiscoDevNet@sparkbot.io` to chat in a Webex Teams space.");
                         convo.repeat();
                         convo.next();
                     },

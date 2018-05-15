@@ -4,34 +4,36 @@
 //
 
 /**
- * Cisco Spark WebSocket example using Botkit
+ * WebSocket example for Webex Teams using Botkit
+ * WARNING: note that this code leverages a 3rd party library not supported by Cisco
  */
 
-var accessToken = process.env.SPARK_TOKEN;
+// Fetch token from environement
+// [COMPAT] supports SPARK_TOKEN for backward compatibility
+var accessToken = process.env.ACCESS_TOKEN || process.env.SPARK_TOKEN 
 if (!accessToken) {
-    console.log("No Cisco Spark access token found in env variable SPARK_TOKEN");
+    console.log("Please specify an access token via an ACCESS_TOKEN environment variable");
     process.exit(2);
 }
 
-var PORT = process.env.PORT || 3000;
+var port = process.env.PORT || 3000;
 
 
-// Spark Websocket Intialization
-var SparkWebSocket = require('ciscospark-websocket-events');
-sparkwebsocket = new SparkWebSocket(accessToken);
-sparkwebsocket.connect(function (err, res) {
+// Websocket Intialization
+var UnsupportedWebSocketLibrary = require('ciscospark-websocket-events');
+websocket = new UnsupportedWebSocketLibrary(accessToken);
+websocket.connect(function (err, res) {
     if (!err) {
-        sparkwebsocket.setWebHookURL("http://localhost:" + PORT + "/ciscospark/receive");
+        websocket.setWebHookURL("http://localhost:" + port + "/webhook");
     }
     else {
         console.log("Error starting up websocket: " + err);
     }
 })
 
-//////// Bot Kit //////
+//////// Botkit //////
 
 var Botkit = require('botkit');
-
 var controller = Botkit.sparkbot({
     debug: true,
     log: true,
@@ -42,10 +44,10 @@ var controller = Botkit.sparkbot({
 var bot = controller.spawn({
 });
 
-controller.setupWebserver(PORT, function (err, webserver) {
+controller.setupWebserver(port, function (err, webserver) {
 
     //setup incoming webhook handler
-    webserver.post('/ciscospark/receive', function (req, res) {
+    webserver.post('/webhook', function (req, res) {
         res.sendStatus(200);
         controller.handleWebhookPayload(req, res, bot);
     });
@@ -63,7 +65,7 @@ var emoji = require('node-emoji');
 // Display an emoji picked randomly
 controller.hears(['random'], 'direct_message,direct_mention', function (bot, message) {
     var random = emoji.random();
-    var email = message.user; // Spark User that created the message orginally 
+    var email = message.user; // Webex Teams User that created the message orginally 
     bot.reply(message, "hey <@personEmail:" + email + ">, type `:" + random.key + ":` to get " + random.emoji);
 });
 
@@ -112,7 +114,7 @@ controller.hears('', 'direct_message,direct_mention', function (bot, message) {
 controller.on('bot_space_join', function (bot, message) {
     bot.reply(message, "Hi, I am the Emoji bot!\n\nType a sentence with an emoji tag such as \`:heart:\` to see me in action.", function (err, newMessage) {
         if (newMessage.roomType == "group") {
-            bot.reply(message, "\n\n**Note that this is a 'Group' room. I will answer only when mentionned.**");
+            bot.reply(message, "\n\n**Note that this is a 'Group' space. I will answer only when mentionned.**");
         }
     });
 });

@@ -1,5 +1,5 @@
 //
-// Stores objects into a dedicated key space, and fetches the list to display it in a Spark room.
+// Stores objects into a dedicated key space, and fetches the list to display it in a space.
 //
 //
 module.exports = function (controller) {
@@ -21,7 +21,7 @@ module.exports = function (controller) {
             }
         });
 
-        var event = { id: "Events", description: "Nothing's like meeting in person at a conference, training or a hackathon. Check the list of [DevNet events](https://developer.cisco.com/site/devnet/events-contests/events/) or ask the bot: invite `CiscoDevNet@sparkbot.io` to chat in a Cisco Spark space.", href:"https://developer.cisco.com/site/devnet/events-contests/events/" };
+        var event = { id: "Events", description: "Nothing's like meeting in person at a conference, training or a hackathon. Check the list of [DevNet events](https://developer.cisco.com/site/devnet/events-contests/events/) or ask the bot: invite `CiscoDevNet@sparkbot.io` to chat in a Webex Teams space.", href:"https://developer.cisco.com/site/devnet/events-contests/events/" };
         controller.storage.activities.save(event, function (err) {
             if (err) {
                 bot.reply(message, "cannot store activity 'learning lab' description");
