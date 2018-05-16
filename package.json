@@ -1,6 +1,6 @@
 {
   "name": "botkit-webex-samples",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Webex Teams bots built with Botkit",
   "main": "helloworld.js",
   "scripts": {
