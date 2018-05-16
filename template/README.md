@@ -8,7 +8,7 @@ This template regroups a set of good practices:
 
 - skills: organize your bot behaviours by placing code for 'commands', 'conversations' and 'events' in the [skills directory](skills/README.md). The bot comes with a few default skills: ".commons", "help", "fallback" and "welcome".
 
-**Advanced users: check the ["CiscoDevNet Botkit template"](https://github.com/CiscoDevNet/botkit-template) repo branches for more advanced templates: [Redis](https://github.com/CiscoDevNet/botkit-template/tree/redis), [Pluggable](https://github.com/CiscoDevNet/botkit-template/tree/plugin) branches.**
+**Advanced users: check the ["CiscoDevNet Botkit template"](https://github.com/CiscoDevNet/botkit-template) repo branches for a more polished template, as well as the [Redis](https://github.com/CiscoDevNet/botkit-template/tree/redis), [Pluggable](https://github.com/CiscoDevNet/botkit-template/tree/plugin) branches.**
 
 
 ## How to run

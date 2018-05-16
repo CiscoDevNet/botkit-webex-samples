@@ -21,7 +21,7 @@ if (!accessToken) {
     console.log("Could not start as this bot requires a Webex Teams API access token.");
     console.log("Please invoke with an ACCESS_TOKEN environment variable");
     console.log("Example: ");
-    console.log("> ACCESS_TOKEN=XXXXXXXXXXXX PUBLIC_URL=YYYYYYYYYYYYY node helloworld.js");
+    console.log("> ACCESS_TOKEN=XXXXXXXXXXXX PUBLIC_URL=YYYYYYYYYYYYY node bot.js");
     process.exit(1);
 }
 
@@ -29,7 +29,7 @@ if (!process.env.PUBLIC_URL) {
     console.log("Could not start as this bot must expose a public endpoint.");
     console.log("Please add env variable PUBLIC_URL on the command line");
     console.log("Example: ");
-    console.log("> ACCESS_TOKEN=XXXXXXXXXXXX PUBLIC_URL=YYYYYYYYYYYYY node helloworld.js");
+    console.log("> ACCESS_TOKEN=XXXXXXXXXXXX PUBLIC_URL=YYYYYYYYYYYYY node bot.js");
     process.exit(1);
 }
 
