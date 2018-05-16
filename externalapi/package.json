@@ -3,6 +3,9 @@
   "version": "0.2.0",
   "description": "Botkit sample that invokes an external API",
   "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
   "keywords": [
     "webex",
     "webex-teams",

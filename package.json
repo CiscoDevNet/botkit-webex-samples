@@ -3,6 +3,9 @@
   "version": "0.2.0",
   "description": "Webex Teams bots built with Botkit",
   "main": "helloworld.js",
+  "scripts": {
+    "start": "node helloworld.js"
+  },
   "keywords": [
     "webex",
     "webex-teams",

@@ -3,6 +3,9 @@
   "description": "Botkit example for Webex Teams with Redis storage",
   "version": "0.2.0",
   "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
   "keywords": [
     "webex",
     "webex-teams",

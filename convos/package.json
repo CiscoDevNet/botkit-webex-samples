@@ -3,6 +3,9 @@
   "description": "Botkit conversation examples for Webex Teams",
   "version": "1.1.0",
   "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
   "keywords": [
     "webex",
     "webex-teams",
