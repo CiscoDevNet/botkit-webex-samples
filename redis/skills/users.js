@@ -1,5 +1,5 @@
 //
-// Stores a value in BotKit's Redis user space, so that the value can be retreived later
+// Stores a value in Botkit's Redis user space, so that the value can be retreived later
 // - store any_string
 // - fetch
 //

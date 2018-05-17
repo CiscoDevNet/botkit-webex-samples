@@ -1,5 +1,5 @@
 //
-// drink: illustes mutiple threaded conversation
+// drink: illustrates a muti-threaded conversation
 //
 // Q: "What about coffee (yes / no / cancel)"
 // A: no
