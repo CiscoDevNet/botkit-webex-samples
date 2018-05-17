@@ -12,14 +12,14 @@ Set the env variable "REDIS_URL" to point to your Redis instance, such as
 Command line example for (Mac/Linux) bash users
 
 ```shell
-REDIS_URL=redis://localhost:6379 PUBLIC_URL=https://55454daa.ngrok.io SPARK_TOKEN=0123456789ABCDEFGHIJ node bot.js
+REDIS_URL=redis://localhost:6379 PUBLIC_URL=https://55454daa.ngrok.io ACCESS_TOKEN=0123456789ABCDEFGHIJ node bot.js
 ```
 
-From a Windows machine, type:
+From a Windows command shell, type:
 ```shell
 set REDIS_URL=redis://localhost:6379
 set PUBLIC_URL=https://55454daa.ngrok.io
-set SPARK_TOKEN=0123456789ABCDEFGHIJ
+set ACCESS_TOKEN=0123456789ABCDEFGHIJ
 node bot.js
 ```
 

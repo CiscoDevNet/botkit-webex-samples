@@ -14,19 +14,22 @@ env(__dirname + '/.env');
 
 var Botkit = require('botkit');
 
-if (!process.env.SPARK_TOKEN) {
-    console.error("Could not start as bots require a Cisco Spark API access token.");
-    console.error("Please add env variable SPARK_TOKEN on the command line or to the .env file");
-    console.error("Example: ");
-    console.error("> SPARK_TOKEN=XXXXXXXXXXXX PUBLIC_URL=YYYYYYYYYYYYY node bot.js");
+// Fetch token from environement
+// [COMPAT] supports SPARK_TOKEN for backward compatibility
+var accessToken = process.env.ACCESS_TOKEN || process.env.SPARK_TOKEN 
+if (!accessToken) {
+    console.log("Could not start as this bot requires a Webex Teams API access token.");
+    console.log("Please invoke with an ACCESS_TOKEN environment variable");
+    console.log("Example: ");
+    console.log("> ACCESS_TOKEN=XXXXXXXXXXXX PUBLIC_URL=YYYYYYYYYYYYY node bot.js");
     process.exit(1);
 }
 
 if (!process.env.PUBLIC_URL) {
-    console.error("Could not start as this bot must expose a public endpoint.");
-    console.error("Please add env variable PUBLIC_URL on the command line or to the .env file");
-    console.error("Example: ");
-    console.error("> SPARK_TOKEN=XXXXXXXXXXXX PUBLIC_URL=YYYYYYYYYYYYY node bot.js");
+    console.log("Could not start as this bot must expose a public endpoint.");
+    console.log("Please add env variable PUBLIC_URL on the command line");
+    console.log("Example: ");
+    console.log("> ACCESS_TOKEN=XXXXXXXXXXXX PUBLIC_URL=YYYYYYYYYYYYY node bot.js");
     process.exit(1);
 }
 
@@ -35,13 +38,14 @@ var env = process.env.NODE_ENV || "development";
 var controller = Botkit.sparkbot({
     log: true,
     public_address: process.env.PUBLIC_URL,
-    ciscospark_access_token: process.env.SPARK_TOKEN,
-    secret: process.env.SECRET, // this is a RECOMMENDED security setting that checks of incoming payloads originate from Cisco Spark
+    ciscospark_access_token: accessToken,
+    secret: process.env.SECRET, // this is a RECOMMENDED security setting that checks if incoming payloads originate from Webex
     webhook_name: process.env.WEBHOOK_NAME || ('built with BotKit (' + env + ')')
 });
 
 var bot = controller.spawn({
 });
+
 
 //
 // RoomKit initialization
@@ -67,10 +71,10 @@ bot.roomkit = {
         reason: ""
     },
     connect: function () {
-        console.log("Roomkit: loading the jsxapi library");
+        console.log("roomkit: loading the jsxapi library");
         const jsxapi = require('jsxapi');
 
-        console.log(`RoomKit: connecting to RoomKit device listening at: ${this.device.url}`);
+        console.log(`roomKit: connecting to the device listening at: ${this.device.url}`);
         this.connection.state = "connecting";
         this.xapi = jsxapi.connect(this.device.url, {
             username: this.device.username,
@@ -82,7 +86,7 @@ bot.roomkit = {
         });
 
         this.xapi.on('ready', () => {
-            console.log("RoomKit: successfully connected to the device");
+            console.log("roomKit: successfully connected to the device");
             this.connection.state = "success";
         });
     }
@@ -97,21 +101,20 @@ bot.commons = {
     "owner": process.env.owner,
     "support": process.env.support,
     "platform": process.env.platfom,
-    "nickname": process.env.BOT_NICKNAME || "unknown",
     "code": process.env.code
 };
 
 // Start Bot API
 controller.setupWebserver(process.env.PORT || 3000, function (err, webserver) {
     controller.createWebhookEndpoints(webserver, bot, function () {
-        console.log("Cisco Spark: Webhooks set up!");
+        console.log("webhooks setup successful");
     });
 
     // installing Healthcheck
     webserver.get('/ping', function (req, res) {
         res.json(bot.commons);
     });
-    console.log("Cisco Spark: healthcheck available at: " + bot.commons.healthcheck);
+    console.log("healthcheck available at: " + bot.commons.healthcheck);
 
     // Connect to RoomKit device
     bot.roomkit.connect();
@@ -124,16 +127,16 @@ require("fs").readdirSync(normalizedPath).forEach(function (file) {
         // Read JS scripts
         if (file.match(/\.js$/)) {
             require("./skills/" + file)(controller);
-            console.log("Cisco Spark: loaded skill: " + file);
+            console.log("loaded skill: " + file);
         }
     }
     catch (err) {
         if (err.code && (err.code == "MODULE_NOT_FOUND")) {
-            console.log("Cisco Spark: could not find module in skill: " + file);
+            console.log("could not find module in skill: " + file);
             return;
         }
         if (err.name && (err.name == "SyntaxError")) {
-            console.log("Cisco Spark: syntax error in skill: " + file + ", err: " + err.message);
+            console.log("syntax error in skill: " + file + ", err: " + err.message);
             return;
         }
     }

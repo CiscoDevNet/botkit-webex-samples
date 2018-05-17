@@ -4,7 +4,7 @@ This bot comes as a companion to the [DevNet learning lab: "Creating Conversatio
 
 The concept of conversations is illustrated with increasingly complex conversations where a user is asked to pick a color:
 
-- [color](https://github.com/CiscoDevNet/botkit-ciscospark-samples/blob/master/learninglab/skills/color.js) : asks a user to pick a color (no check)
-- [restricted](https://github.com/CiscoDevNet/botkit-ciscospark-samples/blob/master/learninglab/skills/restricted.js) : let a user pick a color among a set of options
-- [threads](https://github.com/CiscoDevNet/botkit-ciscospark-samples/blob/master/learninglab/skills/threads.js) : branch to another thread
-- [variables](https://github.com/CiscoDevNet/botkit-ciscospark-samples/blob/master/learninglab/skills/variables.js) : enriched user-context among threads
+- [color](https://github.com/CiscoDevNet/botkit-webex-samples/blob/master/learninglab/skills/color.js) : asks a user to pick a color (no check)
+- [restricted](https://github.com/CiscoDevNet/botkit-webex-samples/blob/master/learninglab/skills/restricted.js) : let a user pick a color among a set of options
+- [threads](https://github.com/CiscoDevNet/botkit-webex-samples/blob/master/learninglab/skills/threads.js) : branch to another thread
+- [variables](https://github.com/CiscoDevNet/botkit-webex-samples/blob/master/learninglab/skills/variables.js) : enriched user-context among threads

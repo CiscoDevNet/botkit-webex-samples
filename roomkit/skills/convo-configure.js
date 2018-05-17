@@ -11,6 +11,7 @@ module.exports = function (controller) {
 
         // Check access
         if (!isAuthorized(bot, message)) {
+            bot.reply(message, "sorry, you're not authorized to access the configuration settings of the device");
             return;
         }
 
@@ -134,7 +135,7 @@ module.exports = function (controller) {
                             'password': convo.getResponses()['password'].answer,
                         };
                         bot.roomkit.connect();
-                        convo.say("New settings stored.");
+                        convo.say("New settings stored, and now connected to the device.");
                         convo.next();
                     }
                 },

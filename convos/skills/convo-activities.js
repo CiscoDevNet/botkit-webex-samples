@@ -13,12 +13,12 @@ module.exports = function (controller) {
     controller.hears(['activities'], 'direct_message,direct_mention', function (bot, message) {
 
         bot.startConversation(message, function (err, convo) {
+
             var question = "Here are a few proposed DevNet activities:";
             question += "<br/> `1)` join a Community Of Interest (**communities**)";
             question += "<br/> `2)` take a Learning Lab (**labs**)";
             question += "<br/> `3)` check Upcoming Events (**events**)";
             question += "\n\nWhat do you want to do ?<br/>_(type a number, a **bold keyword** or `cancel`)_";
-
             convo.ask(question, [
                 {
                     pattern: "1|community|communities",
@@ -37,7 +37,7 @@ module.exports = function (controller) {
                 , {
                     pattern: "3|event|express",
                     callback: function (response, convo) {
-                        convo.say("Nothing's like meeting in person at a conference, training or a hackathon. Check the list of [DevNet events](https://developer.cisco.com/site/devnet/events-contests/events/) or ask the bot: invite `CiscoDevNet@sparkbot.io` to chat in a Cisco Spark space.");
+                        convo.say("Nothing's like meeting in person at a conference, training or a hackathon. Check the list of [DevNet events](https://developer.cisco.com/site/devnet/events-contests/events/) or ask the bot: invite `CiscoDevNet@sparkbot.io` to chat in a Webex Teams space.");
                         convo.next();
                     },
                 }
@@ -51,12 +51,16 @@ module.exports = function (controller) {
                 , {
                     default: true,
                     callback: function (response, convo) {
-                        convo.say("Sorry, I did not understand.");
-                        convo.repeat();
-                        convo.next();
+                        convo.gotoThread('bad_response');
                     }
                 }
             ]);
+
+            // Bad response
+            convo.addMessage({
+                text: "Sorry, I did not understand.",
+                action: 'default',
+            }, 'bad_response');
         });
     });
 };
