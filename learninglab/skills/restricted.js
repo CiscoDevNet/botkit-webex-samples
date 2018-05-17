@@ -4,7 +4,7 @@ module.exports = function (controller) {
 
         bot.startConversation(message, function (err, convo) {
 
-            convo.ask("What is your favorite color?", [
+            convo.ask("**What is your favorite color?**", [
                 {
                     pattern: "^blue|green|pink|red|yellow$",
                     callback: function (response, convo) {
@@ -15,12 +15,28 @@ module.exports = function (controller) {
                 {
                     default: true,
                     callback: function (response, convo) {
-                        convo.say("Sorry, I don't know this color. Try another one...");
+                        // We've got 2 options at this point:
+
+                        // 1. simply repeat the question
                         convo.repeat();
                         convo.next();
+
+                        // 2. or provide extra info, then repeat the question
+                        //convo.gotoThread("bad_response");
                     }
                 }
             ]);
+
+            // Bad response
+            //convo.addMessage({
+            //    text: "Sorry, I don't know this color!<br/>_Tip: try 'blue', 'green', 'pink', 'red' or 'yellow._'",
+            //    action: 'default', // goes back to the thread's current state, where the question is not answered
+            //}, 'bad_response');
         });
     });
 };
+
+
+
+
+

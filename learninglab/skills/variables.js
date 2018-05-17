@@ -14,19 +14,23 @@ module.exports = function (controller) {
                 {
                     default: true,
                     callback: function (response, convo) {
-                        convo.say("Sorry, I don't know this color. Try another one...");
-                        convo.repeat();
-                        convo.next();
+                        convo.gotoThread("bad_response");
                     }
                 }
             ], { key: "answer" });
+
+            // Bad response
+            convo.addMessage({
+                text: "Sorry, I don't know this color!<br/>_Tip: try 'blue', 'green', 'pink', 'red' or 'yellow._'",
+                action: 'default', // goes back to the thread's current state, where the question is not answered
+            }, 'bad_response');
 
             // Confirmation thread
             convo.addMessage(
                 "You picked '{{responses.answer}}'",
                 "confirm_choice");
 
-            convo.addQuestion("Please, confirm your choice ? (yes|no)", [
+            convo.addQuestion("Please, confirm your choice ? (**yes**|no)", [
                 {
                     pattern: "^yes|hey|oui|si|da$",
                     callback: function (response, convo) {

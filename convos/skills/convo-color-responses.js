@@ -20,9 +20,7 @@ module.exports = function (controller) {
                 {
                     default: true,
                     callback: function (response, convo) {
-                        convo.say("Sorry, I don't know this color. Try again...");
-                        convo.repeat();
-                        convo.next();
+                        convo.gotoThread("bad_response");
                     }
                 }
             ], { key: "picked" });
@@ -32,7 +30,11 @@ module.exports = function (controller) {
                 "I love the '{{responses.picked}}' color too!",
                 "success");
 
-            convo.activate();
+            // Bad response
+            convo.addMessage({
+                text: "Sorry, I don't know this color. Try again...",
+                action: 'default', // goes back to the thread's current state, where the question is not answered
+            }, 'bad_response');
         });
     });
 };

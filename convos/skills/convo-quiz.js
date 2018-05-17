@@ -1,7 +1,6 @@
 //
 // Quiz: example of a muti-threaded conversation with timeout
 //
-//
 module.exports = function (controller) {
 
     controller.hears(['quiz'], 'direct_message,direct_mention', function (bot, message) {
@@ -20,7 +19,7 @@ module.exports = function (controller) {
                             convo.gotoThread("missed");
                         });
 
-                        convo.gotoThread('quiz');
+                        convo.transitionTo('quiz', "Let's start");
                     },
                 }
                 , {
@@ -39,25 +38,28 @@ module.exports = function (controller) {
                 , {
                     default: true,
                     callback: function (response, convo) {
-                        convo.say("Sorry, I did not understand.");
-                        convo.repeat();
-                        convo.next();
+                        convo.gotoThread('bad_answer');
                     }
                 }
             ]);
 
-            // Cancel thread
+            // Thread: bad response
+            convo.addMessage({
+                text: "Sorry, I did not understand.",
+                action: 'default', // goes back to the thread's current state, where the question is not answered
+            }, 'bad_answer');
+
+            // Thread: cancel
             convo.addMessage({
                 text: "Got it, cancelling...",
                 action: 'stop', // this marks the converation as unsuccessful
             }, 'cancel');
 
-            // Quiz thread
-            convo.addMessage("Let's start", "quiz");
+            // Thread: quiz
             var challenge = pickChallenge();
             convo.addQuestion("Question: " + challenge.question, [
                 {
-                    pattern: "^"+ challenge.answer + "$",
+                    pattern: "^" + challenge.answer + "$",
                     callback: function (response, convo) {
                         convo.gotoThread('success');
                     },
@@ -71,28 +73,32 @@ module.exports = function (controller) {
                 , {
                     default: true,
                     callback: function (response, convo) {
-                        convo.say("Sorry, wrong answer. Try again!");
-                        convo.repeat();
-                        convo.next();
+                        convo.gotoThread('wrong_answer');
                     }
                 }
             ], {}, 'quiz');
 
-            // Success thread
+            // Thread: quiz - success
             convo.addMessage("Congrats, you did it!", "success");
 
-            // Missed thread
+            // Thread: quiz - missed
             convo.addMessage("Time elapsed! you missed it, sorry.", "missed");
+
+            // Thread: quiz - wrong answer
+            convo.addMessage({
+                text: "Sorry, wrong answer. Try again!",
+                action: 'quiz', // goes back to the thread's current state, where the question is not answered
+            }, 'wrong_answer');
         });
     });
 };
 
 
 function pickChallenge() {
-    var a = Math.round(Math.random()*5) + 4;
-    var b = Math.round(Math.random()*5) + 4;
+    var a = Math.round(Math.random() * 5) + 4;
+    var b = Math.round(Math.random() * 5) + 4;
     return {
-        question : "" + a + " x " + b + " =",
-        answer : "" + (a * b)
+        question: "" + a + " x " + b + " =",
+        answer: "" + (a * b)
     }
 }

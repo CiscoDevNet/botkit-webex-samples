@@ -46,7 +46,8 @@ module.exports = function (controller) {
                 , {
                     default: true,
                     callback: function (response, convo) {
-                        convo.say("Sorry, I did not understand.");
+                        // [TODO] Use a thread to provide extra info
+                        //convo.say("Sorry, I did not understand.");
                         convo.repeat();
                         convo.next();
                     }
@@ -70,7 +71,8 @@ module.exports = function (controller) {
                 , {
                     default: true,
                     callback: function (response, convo) {
-                        convo.say("Sorry, I am expecting an ip address.");
+                        // [TODO] Use a thread to provide extra info
+                        //convo.say("Sorry, I am expecting an ip address.");
                         convo.repeat();
                         convo.next();
                     }
@@ -94,7 +96,8 @@ module.exports = function (controller) {
                 , {
                     default: true,
                     callback: function (response, convo) {
-                        convo.say("Sorry, I did not understand.");
+                        // [TODO] Use a thread to provide extra info
+                        //convo.say("Sorry, I did not understand.");
                         convo.repeat();
                         convo.next();
                     }
@@ -118,7 +121,8 @@ module.exports = function (controller) {
                 , {
                     default: true,
                     callback: function (response, convo) {
-                        convo.say("Sorry, I did not understand.");
+                        // [TODO] Use a thread to provide extra info
+                        //convo.say("Sorry, I did not understand.");
                         convo.repeat();
                         convo.next();
                     }
@@ -149,7 +153,8 @@ module.exports = function (controller) {
                 , {
                     default: true,
                     callback: function (response, convo) {
-                        convo.say("Sorry, I did not understand.");
+                        // [TODO] Use a thread to provide extra info
+                        //convo.say("Sorry, I did not understand.");
                         convo.repeat();
                         convo.next();
                     }

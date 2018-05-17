@@ -13,11 +13,6 @@ module.exports = function (controller) {
     controller.hears(['variables'], 'direct_message,direct_mention', function (bot, message) {
 
         bot.startConversation(message, function (err, convo) {
-            convo.addQuestion('What would you like to drink?', function (response, convo) {
-                convo.say('I love ' + response.text + ' too');
-                convo.setVar('drink', response.text);
-                convo.next();
-            }, {}, 'ask-drink');
 
             convo.ask("What about coffee (yes/**no**/cancel)", [
                 {
@@ -31,7 +26,7 @@ module.exports = function (controller) {
                 , {
                     pattern: "no|neh|non|na|birk",
                     callback: function (response, convo) {
-                        convo.gotoThread('ask-drink');
+                        convo.gotoThread('ask_drink');
                     },
                 }
                 , {
@@ -44,12 +39,23 @@ module.exports = function (controller) {
                 , {
                     default: true,
                     callback: function (response, convo) {
-                        convo.say("Sorry, I did not understand.");
-                        convo.repeat();
-                        convo.next();
+                        convo.gotoThread('bad_response');
                     }
                 }
             ]);
+
+            // Thread: Ask for another dring
+            convo.addQuestion('What would you like to drink?', function (response, convo) {
+                convo.say('I love ' + response.text + ' too');
+                convo.setVar('drink', response.text);
+                convo.next();
+            }, {}, 'ask_drink');
+
+            // Thread: Bad response
+            convo.addMessage({
+                text: "Sorry, I did not understand. Try again...",
+                action: 'default', // goes back to the thread's current state, where the question is not answered
+            }, 'bad_response');
 
             convo.on('end', function (convo) {
                 if (convo.status == 'completed') {

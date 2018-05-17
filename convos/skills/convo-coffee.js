@@ -9,7 +9,7 @@ module.exports = function (controller) {
 
         bot.startConversation(message, function (err, convo) {
 
-            convo.ask("What about coffee (yes/no/cancel)", [
+            convo.ask("**What about coffee (yes/no/cancel)**", [
                 {
                     pattern: "yes|yeh|sure|oui|si",
                     callback: function (response, convo) {
@@ -34,12 +34,23 @@ module.exports = function (controller) {
                 , {
                     default: true,
                     callback: function (response, convo) {
-                        convo.say("Sorry, I did not understand.");
-                        convo.repeat();
-                        convo.next();
+                        // We've got 2 options at this point:
+
+                        // 1. simply repeat the question
+                        //convo.repeat();
+                        //convo.next();
+
+                        // 2. or provide extra info, then repeat the question
+                        convo.gotoThread("bad_response");
                     }
                 }
             ]);
+
+            // Bad response
+            convo.addMessage({
+                text: "Sorry, I did not understand!<br/>_Tip: try 'yes', 'no' or 'cancel._'",
+                action: 'default', // goes back to the thread's current state, where the question is not answered
+            }, 'bad_response');
         });
     });
 };
