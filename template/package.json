@@ -1,6 +1,6 @@
 {
   "description": "Botkit template for Webex Teams",
-  "version": "0.2.1",
+  "version": "0.4.0",
   "main": "bot.js",
   "scripts": {
     "start": "node bot.js"
@@ -14,7 +14,7 @@
   "author": "Stève Sfartz (Cisco DevNet) <stsfartz@cisco.com>",
   "license": "MIT",
   "dependencies": {
-    "botkit": "^0.6.16",
+    "botkit": "^0.7.0",
     "node-env-file": "^0.1.8"
   }
 }

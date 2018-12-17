@@ -1,5 +1,8 @@
 # Changes
 
+**v0.4.0 (2018-12-17): Botkit framework update**
+   - uses Botkit latest (v0.7.0) 
+
 **v0.3.0 (2018-05-17): Webex Teams rebrand**
    - changing to new 'convos' code in the Botkit samples (after Webex rebrand)
    - uses Botkit latest (v0.6.14) 
