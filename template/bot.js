@@ -37,16 +37,6 @@ controller.ready(() => {
     controller.loadModules(__dirname + '/features');
 });
 
-controller.webserver.get('/', (req, res) => {
-
-    res.send(`This app is running Botkit ${ controller.version }.`);
-});
-
-controller.webserver.get('/ping', (req, res) => {
-
-    res.send( JSON.stringify( botCommons, null, 4 ) );
-});
-
 controller.botCommons = {
 
     healthCheck: process.env.PUBLIC_ADDRESS + "/ping",
@@ -57,6 +47,16 @@ controller.botCommons = {
     platform: process.env.PLATFORM,
     code: process.env.CODE
 }
+
+controller.webserver.get('/', (req, res) => {
+
+    res.send(`This app is running Botkit ${ controller.version }.`);
+});
+
+controller.webserver.get('/ping', (req, res) => {
+
+    res.send( JSON.stringify( controller.botCommons, null, 4 ) );
+});
 
 controller.checkAddMention = function( roomType, command ) {
 
