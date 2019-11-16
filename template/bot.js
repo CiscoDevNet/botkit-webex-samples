@@ -1,103 +1,73 @@
-//
-// Copyright (c) 2017 Cisco Systems
-// Licensed under the MIT License 
-//
+//  __   __  ___        ___
+// |__) /  \  |  |__/ |  |  
+// |__) \__/  |  |  \ |  |  
 
+// This is the main file for the template bot.
 
-// Load env variables 
-var env = require('node-env-file');
-env(__dirname + '/.env');
+// Import Botkit's core features
+const { Botkit } = require('botkit');
 
+// Import a platform-specific adapter for webex.
+const { WebexAdapter } = require('botbuilder-adapter-webex');
 
-//
-// BotKit initialization
-//
+// Load process.env values from .env file
+require('dotenv').config();
 
-var Botkit = require('botkit');
+// Load random UUID generator
+const uuidv4 = require('uuid/v4');
 
-// Fetch token from environement
-// [COMPAT] supports SPARK_TOKEN for backward compatibility
-var accessToken = process.env.ACCESS_TOKEN || process.env.SPARK_TOKEN 
-if (!accessToken) {
-    console.log("Could not start as this bot requires a Webex Teams API access token.");
-    console.log("Please invoke with an ACCESS_TOKEN environment variable");
-    console.log("Example: ");
-    console.log("> ACCESS_TOKEN=XXXXXXXXXXXX PUBLIC_URL=YYYYYYYYYYYYY node bot.js");
-    process.exit(1);
+const adapter = new WebexAdapter({
+    
+    access_token: process.env.ACCESS_TOKEN,
+    public_address: process.env.PUBLIC_ADDRESS,
+    secret: uuidv4()
+})    
+
+const controller = new Botkit({
+
+    webhook_uri: '/api/messages',
+    adapter: adapter,
+    storage: null
+});
+
+// Once the bot has booted up its internal services, you can use them to do stuff.
+controller.ready(() => {
+
+    // load traditional developer-created local custom feature modules
+    controller.loadModules(__dirname + '/features');
+});
+
+controller.webserver.get('/', (req, res) => {
+
+    res.send(`This app is running Botkit ${ controller.version }.`);
+});
+
+controller.webserver.get('/ping', (req, res) => {
+
+    res.send( JSON.stringify( botCommons, null, 4 ) );
+});
+
+controller.botCommons = {
+
+    healthCheck: process.env.PUBLIC_ADDRESS + "/ping",
+    upSince: new Date(Date.now()).toGMTString(),
+    version: "v" + require("./package.json").version,
+    owner: process.env.OWNER,
+    support: process.env.SUPPORT,
+    platform: process.env.PLATFORM,
+    code: process.env.CODE
 }
 
-if (!process.env.PUBLIC_URL) {
-    console.log("Could not start as this bot must expose a public endpoint.");
-    console.log("Please add env variable PUBLIC_URL on the command line");
-    console.log("Example: ");
-    console.log("> ACCESS_TOKEN=XXXXXXXXXXXX PUBLIC_URL=YYYYYYYYYYYYY node bot.js");
-    process.exit(1);
+controller.checkAddMention = function( roomType, command ) {
+
+    var botName = adapter.identity.displayName;
+
+    if ( roomType == 'group' ) {
+        
+        return `\`@${ botName } ${ command }\``
+    }
+
+    return `\`${ command } \``
 }
 
-var env = process.env.NODE_ENV || "development";
-
-var controller = Botkit.sparkbot({
-    log: true,
-    public_address: process.env.PUBLIC_URL,
-    ciscospark_access_token: accessToken,
-    secret: process.env.SECRET, // this is a RECOMMENDED security setting that checks if incoming payloads originate from Webex
-    webhook_name: process.env.WEBHOOK_NAME || ('built with BotKit (' + env + ')')
-});
-
-var bot = controller.spawn({
-});
-
-// Load BotCommons properties
-bot.commons = {};
-bot.commons["healthcheck"] = process.env.PUBLIC_URL + "/ping";
-bot.commons["up-since"] = new Date(Date.now()).toGMTString();
-bot.commons["version"] = "v" + require("./package.json").version;
-bot.commons["owner"] = process.env.owner;
-bot.commons["support"] = process.env.support;
-bot.commons["platform"] = process.env.platform;
-bot.commons["code"] = process.env.code;
-
-// Start Bot API
-controller.setupWebserver(process.env.PORT || 3000, function (err, webserver) {
-    controller.createWebhookEndpoints(webserver, bot, function () {
-        console.log("webhooks setup successfully");
-    });
-
-    // installing Healthcheck
-    webserver.get('/ping', function (req, res) {
-        res.json(bot.commons);
-    });
-    console.log("healthcheck available at: " + bot.commons.healthcheck);
-});
-
-// Load skills
-var normalizedPath = require("path").join(__dirname, "skills");
-require("fs").readdirSync(normalizedPath).forEach(function (file) {
-    try {
-        require("./skills/" + file)(controller);
-        console.log("loaded skill: " + file);
-    }
-    catch (err) {
-        if (err.code == "MODULE_NOT_FOUND") {
-            if (file != "utils") {
-                console.log("could not load skill: " + file);
-            }
-        }
-    }
-});
-
-// Utility to add mentions if Bot is in a 'Group' space
-bot.enrichCommand = function (message, command) {
-    var botName = process.env.BOT_NICKNAME || "BotName";
-    if ("group" == message.roomType) {
-        return "`@" + botName + " " + command + "`";
-    }
-    if (message.original_message) {
-        if ("group" == message.original_message.roomType) {
-            return "`@" + botName + " " + command + "`";
-        }
-    }
-
-    return "`" + command + "`";
-}
-
+console.log( 'Health check available at: ' + controller.botCommons.healthCheck );
