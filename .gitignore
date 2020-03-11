@@ -1,10 +1,4 @@
-# Node artefacts
 node_modules
-npm-debug.log
-
-# IDE artefacts
-.editorconfig
-
-# WebSocket artefacts
-device.json
-
+yarn.lock
+/.eslintrc.js
+/.env

@@ -1,0 +1,60 @@
+// When added to a space, this bot collects the space title and id
+// then creates a new space with the user that added the bot to the original
+// space.  
+
+// In the new space, the room title and id are reported. The bot then immediately leaves 
+// the original space.
+
+// Note, this feature is disabled by default (simply by adding '_disabled' to the file name)
+// to avoid confusion (adding the bot to a space only to have it immediately leave!)
+// To enable this feature, simply remove '_disabled' from the filename and restart the bot
+
+module.exports = function ( controller ) {
+
+    controller.on('memberships.created', async( bot, message ) => {
+
+        let membershipId = message.data.id;
+        let roomId = message.data.roomId;
+        let roomTitle = await bot.api.rooms.get( roomId )
+        .then( ( room ) => {
+            return room.title;
+        });
+
+        // If the bot created the space, don't do anything
+        if ( message.actorId == controller.adapter.identity.id ) return;
+
+        await bot.api.memberships.remove( membershipId );
+       
+        // startPrivateConversation seems to be broken at the moment
+        // https://github.com/howdyai/botkit/issues/1913
+
+        // await bot.startPrivateConversation( userId )
+        // .then( () => {
+        //     let info = 'Info for the Space where you just added me:  \n';
+        //     info += `**Title:** ${ roomTitle }  \n`;
+        //     info += `**Id:** ${ roomId }  \n`;
+        //     bot.say( { markdown: info } );
+        // } );
+
+        // Instead create a regular group room, with just the two of us
+        let room = await bot.api.rooms.create( { title: `Id for: ${ roomTitle }` } );
+
+        // Add user as member (bot is automatically added)
+        await bot.api.memberships.create( {
+            roomId: room.id,
+            personId: message.actorId,
+        });
+
+        // Start a Botkit conversation context in the space
+        await bot.startConversationInRoom( room.id, message.actorId );
+
+        let info = 'Info for the room I was just added to:  \n';
+        info += `**Title:** \`${ roomTitle }\`  \n`;
+        info += `**Room Id:** \`${ roomId }\`  \n`;
+        info += '_(removing myself from the room...)_';
+
+        await bot.say( { markdown: info } )
+
+    } )
+
+}
