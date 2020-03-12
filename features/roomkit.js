@@ -1,3 +1,6 @@
+// Please configure options for this feature in the 'Configurations for the roomkit.js feature'
+// section of the .env file
+
 const jsxapi = require( 'jsxapi' );
 
 const { BotkitConversation } = require( 'botkit' );
@@ -96,7 +99,7 @@ module.exports = function ( controller ) {
         }
         else {
             
-            await bot.reply( message, '(Roomkit) not connected to a device.  Exiting...' );
+            await bot.reply( message, '(Roomkit) unable to connect to a device (check .env config).  Exiting...' );
             return;
         }
 

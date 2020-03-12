@@ -1,7 +1,8 @@
 // Threaded conversation illustrating a survey.
 // Responses are posted into the Webex Teams Space
-// configure via SURVEY_SPACE (the bot must be a member)
-// or simply back into the same Space if SURVEY_RESULTS_SPACE is empty
+// configured via SURVEY_SPACE (the bot must be a member)
+// or simply back into the Space the survey was submitted from
+// if SURVEY_RESULTS_SPACE is empty
 
 const { BotkitConversation } = require( 'botkit' );
 

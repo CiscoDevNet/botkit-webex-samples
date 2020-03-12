@@ -30,7 +30,6 @@ const { BotkitConversation } = require( 'botkit' );
 
 module.exports = async function (controller) {
 
-
     controller.hears( 'events', 'message,direct_message', async ( bot, message ) => {
         await fetch( `http://localhost:${ process.env.PORT }/www/events.json`)
             .then(res => res.json())
@@ -50,9 +49,6 @@ module.exports = async function (controller) {
             })
     });
 
-    controller.commandHelp.push( { 
-            command: 'events', 
-            text: 'Retrieve DevNet event details from an HTTP API providing JSON data'
-    } );
+    controller.commandHelp.push( { command: 'events', text: 'Retrieve DevNet event details from an HTTP API providing JSON data' } );
 
 }

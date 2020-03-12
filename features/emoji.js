@@ -8,7 +8,7 @@ module.exports = async function (controller) {
 
     let question =  'Hi, I am the Emoji bot!\n'; 
     question += '* Type any sentence with an emoji tag in it (like: "`I :heart: U`") to see me in action.\n';
-    question += '* You can also use the "`find {keyword}`" and "`random`" commands';
+    question += '* You can also use "`find {keyword}`" and "`random`" commands';
 
     convo.ask( { channelData: { markdown: question } }, [
         {

@@ -1,18 +1,16 @@
-# Botkit template
+# botkit-webex-samples
 
-This project implements a Botkit + Webex Teams adapter bot, based on the [generator-botkit](https://www.npmjs.com/package/generator-botkit) Yoeman template, providing a few extra good-practice features, plus several interesting samples:
+This project implements a Botkit + Webex Teams adapter bot, based on the DevNet [botkit-template](https://www.github.com/CiscoDevNet/botkit-template) project, providing some additional interesting samples and examples:
 
-- Optionally use Webex Teams Node.js SDK websockets for incoming events and messages, instead of webhooks
+- `emoji.js`- Converts emoji tags into unicode characters and returns the "emojified" phrase
 
-- A 'health check' URL: check bot availability, uptime and metadata by browsing to the bot's public URL
+- `events.js` - Retrieve/display DevNet event details from an HTTP REST API providing JSON data
 
-- Quality-of-life features: fallback/catch-all module; welcome message when user joins a space
+- `roomid-phantom.js` - Helpful utility bot; when added to a room, it creates a separate space with the requestor and outputs the roomId of the original room
 
-- 'Help' command auto-generation function
+- `roomkit.js` - Interact with a Cisco room device via xAPI/jsxapi.  Query the device's 'PeopleCount' function, or execute an ad hoc 'xStatus' CLI command
 
-- Redis/MongoDB storage support for persistent/scalable storage of conversation state
-
-- checkAddMention() function to automatically format bot commands for 1:1 or group space usage
+- `survey.js` - Implements a basic survey, posting survey data into a cloud service (i.e. Webex Teams) via an external REST API 
 
 ## Websockets vs. Webhooks
 
@@ -30,9 +28,9 @@ Assuming you plan to us [ngrok](https://ngrok.com) to give your bot a publically
 1. Clone this repo:
 
     ```sh
-    git clone https://github.com/CiscoDevNet/botkit-template.git
+    git clone https://github.com/CiscoDevNet/botkit-webex-samples.git
 
-    cd botkit-template
+    cd botkit-webex-samples
     ```
 
 1. Install the Node.js dependencies:
@@ -49,15 +47,15 @@ Assuming you plan to us [ngrok](https://ngrok.com) to give your bot a publically
     ngrok http 3000
     ```
 
-    Note/save the 'Forwarding' HTTPS (not HTTP) address that ngrok generates
+    Note/save the 'Forwarding' HTTPS address that ngrok generates
 
-1. Rename the `env.example` file to `.env`, then edit to configure the settings and info for your bot.
+1. Rename the `env.example` file to `.env`, then edit to configure the settings and info for your bot.  Individual features included in this project may need specific configurations in `.env` (see the comments at the top of each feature `.js` file for details.)
 
     >Note: you can also specify any of these settings via environment variables (which will take precedent over any settings configured in the `.env` file)...often preferred in production environments
 
-    To successfully run all of the sample features, you'll need to specify at minimum a `PUBLIC_URL` (ngrok HTTPS forwarding URL), and a `WEBEX_ACCESS_TOKEN` (Webex Teams bot access token)
+    To successfully run all of the sample features, you'll need to specify at minimum a `WEBEX_ACCESS_TOKEN` (Webex Teams bot access token), and either a `PUBLIC_URL` or enable `WEBSOCKET_EVENTS`.
 
-    >If running on Glitch.me or Heroku (with [Dyno Metadata](https://devcenter.heroku.com/articles/dyno-metadata) enbaled), the `PUBLIC_URL` will be auto-configured
+    >Note: If running on Glitch.me or Heroku (with [Dyno Metadata](https://devcenter.heroku.com/articles/dyno-metadata) enbaled), the `PUBLIC_URL` will be auto-configured
 
     Additional values in the `.env` file (like `OWNER` and `CODE`) are used to populate the healthcheck URL meta-data.
 
@@ -73,7 +71,7 @@ Assuming you plan to us [ngrok](https://ngrok.com) to give your bot a publically
 
 * Click [![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg)](https://glitch.com/edit/#!/import/github/CiscoDevNet/botkit-template)
 
-* Open the `.env` file, then uncomment the `ACCESS_TOKEN` variable and paste in your bot's access token
+* Open the `.env` file, then uncomment the `WEBEX_ACCESS_TOKEN` variable and paste in your bot's access token
 
     **Optional**: enter appropirate info in the "Bot meta info..." section
 
@@ -87,7 +85,7 @@ You can verify the bot is up and running by browsing to its healthcheck URL (i.e
 
 * Create a new project pointing to this repo.
 
-* Open your app settings, view your config variables, and add an ACCESS_TOKEN variable with your bot's access token as value.
+* Open your app settings, view your config variables, and add a `WEBEX_ACCESS_TOKEN` variable with your bot's access token as value.
 
 * Unless your app is using [Dyno Metadata](https://devcenter.heroku.com/articles/dyno-metadata), you also need to add a PUBLIC_URL variable pointing to your app domain.
 
