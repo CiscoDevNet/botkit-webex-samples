@@ -7,11 +7,11 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "helloworld.js",
+            "name": "Launch Program",
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/helloworld.js"
+            "program": "${workspaceFolder}/bot.js"
         }
     ]
 }

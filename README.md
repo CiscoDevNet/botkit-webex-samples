@@ -1,110 +1,96 @@
-# Botkit samples for Webex Teams
+# botkit-webex-samples
 
-This community project driven regroups:
+This project implements a Botkit + Webex Teams adapter bot, based on the DevNet [botkit-template](https://www.github.com/CiscoDevNet/botkit-template) project, providing some additional interesting samples and examples:
 
-- Webex Teams bot samples built with [Howdy's Botkit](https://github.com/howdyai/botkit) 
-- A template to quickly bootstrap your Botkit / Webex Teams bot project _(updated for Botkit 4.5)_
-- An experimental websocket usage example
+- `emoji.js`- Converts emoji tags into unicode characters and returns the "emojified" phrase
 
-We suggest you start with the HelloWorld bot sample below.
+- `events.js` - Retrieve/display DevNet event details from an HTTP REST API providing JSON data
 
-**New to Botkit?**
+- `roomid-phantom.js` - Helpful utility bot; when added to a room, it creates a separate space with the requestor and outputs the roomId of the original room
 
-- Read the ["Botkit guide"](https://botkit.ai/docs/v4/platforms/webex.html)
-- Take the ["Create Conversational Bots with Botkit" learning lab](https://learninglabs.cisco.com/tracks/collab-cloud/spark-apps/collab-spark-botkit/step/1)
+- `roomkit.js` - Interact with a Cisco room device via xAPI/jsxapi.  Query the device's 'PeopleCount' function, or execute an ad hoc 'xStatus' CLI command
 
-**New to Webex Teams?**
+- `survey.js` - Implements a basic survey, posting survey data into a cloud service (i.e. Webex Teams) via an external REST API 
 
-- Go straight to [Webex for Developers](https://developer.webex.com), sign in and click [My apps](https://developer.webex.com/my-apps) to create a Webex Teams bot account
+## Websockets vs. Webhooks
 
-## Hello World (bot command)
+Most Botkit features can be implemented by using the Webex Teams JS SDK websockets functionality, which establishes a persistent connection to the Webex Teams cloud for outbound and inbound messages/events.
 
-Simplest bot you can code: echo a message plus the Webex Teams user name that mentioned the bot:
+Webex Teams also supports traditional HTTP webhooks for messages/events, which requires that your bot be accessible via a publically reachable URL.  A public URL is also needed if your bot will be serving any web pages/files, e.g. images associated with the cards and buttons feature or the health check URL.
 
-![hello-bot-direct](docs/img/hello-bot-direct.png)
+- If you don't need to serve buttons and cards images, you can set the environment variable `WEBSOCKET_EVENTS=True` and avoid the need for a public URL
+- If you are implementing buttons & cards, you will need a public URL (e. g. by using a service like Ngrok, or hosting your bot in the cloud) - configure this via the `PUBLIC_URL` environment variable 
 
-And don't forget to `@mention` the bot in group spaces:
+## How to run (local machine)
 
-![hello-bot-group](docs/img/hello-bot-group.png)
+Assuming you plan to us [ngrok](https://ngrok.com) to give your bot a publically available URL (optional, see above), you can run this template in a jiffy:
 
-Note that the bot will respond to anyone mentioning it, which means it can chat with other bots!
+1. Clone this repo:
 
-![hello-bot-playing](docs/img/hello-bot-playing.png)
+    ```sh
+    git clone https://github.com/CiscoDevNet/botkit-webex-samples.git
 
-Assuming your bot is accessible from the internet or you exposed it via a tunneling tool such as [ngrok](https://ngrok.com), you can run any sample in a jiffy:
+    cd botkit-webex-samples
+    ```
 
-### How to run helloworld.js
+1. Install the Node.js dependencies:
 
-[ngrok](http://ngrok.com) helps you expose the bot running on your laptop to the internet, type: `ngrok http 8080` to launch
+    ```sh
+    npm install
+    ```
 
-From a Mac/Linux terminal window, type:
+1. Create a Webex Teams bot account at ['Webex for Developers'](https://developer.webex.com/my-apps/new/bot), and note/save your bot's access token
 
-```shell
-git clone https://github.com/CiscoDevNet/botkit-webex-samples
-cd botkit-webex-samples
-npm install
-ACCESS_TOKEN=0123456789abcdef PUBLIC_URL=https://abcdef.ngrok.io node helloworld.js
-```
+1. Launch Ngrok to expose port 3000 of your local machine to the internet:
 
-From a Windows CMD shell, type:
+    ```sh
+    ngrok http 3000
+    ```
 
-```shell
-git clone https://github.com/CiscoDevNet/botkit-webex-samples
-cd botkit-webex-samples
-npm install
-set ACCESS_TOKEN=0123456789abcdef
-set PUBLIC_URL=https://abcdef.ngrok.io
-set SECRET=not that secret
-node helloworld.js
-```
+    Note/save the 'Forwarding' HTTPS address that ngrok generates
 
-where:
+1. Rename the `env.example` file to `.env`, then edit to configure the settings and info for your bot.  Individual features included in this project may need specific configurations in `.env` (see the comments at the top of each feature `.js` file for details.)
 
-- ACCESS_TOKEN is the API access token of your Webex Teams bot
-- PUBLIC_URL is the root URL at which the Webex Cloud platform can reach your bot
+    >Note: you can also specify any of these settings via environment variables (which will take precedent over any settings configured in the `.env` file)...often preferred in production environments
 
-## Bootstrap a Botkit project for Webex Teams (template)
+    To successfully run all of the sample features, you'll need to specify at minimum a `WEBEX_ACCESS_TOKEN` (Webex Teams bot access token), and either a `PUBLIC_URL` or enable `WEBSOCKET_EVENTS`.
 
-The [template](template/) regroups a set of best practices:
-- configuration: pass settings either through environment variables on the command line, or by hardcoding some of them in the `.env` file. Note that env variable are priorized over the `env`file if values are found in both places.
-- healthcheck: check if everything is going well by hitting the `ping` endpoint exposed automatically. 
-- skills: organize your bot behaviours by placing 'hear commands', 'convos' and 'events' in the [skills directory](template/skills/). The bot comes with a ".commons", "help", "fallback" and "welcome" skills.
+    >Note: If running on Glitch.me or Heroku (with [Dyno Metadata](https://devcenter.heroku.com/articles/dyno-metadata) enbaled), the `PUBLIC_URL` will be auto-configured
 
-## Conversations demo bot (convos)
+    Additional values in the `.env` file (like `OWNER` and `CODE`) are used to populate the healthcheck URL meta-data.
 
-A [conversational bot](convos/) that illustrates Botkit conversation system through examples. The bot is built with the [template provided in this repo](template/).
+    Be sure to save the `.env` file!
 
-You can test the bot live by inviting `convos@sparkbot.io` to a Webex Teams's space.
+1. You're ready to run your bot:
 
-![convos](docs/img/convos.png)
+    ```sh
+    node bot.js
+    ```
 
-## DevNet events (external api invocation)
+## Quick start on Glitch.me
 
-This bot illustrates how you can [create conversations](externalapi/bot.js#L117),
-and uses a [wrapper to an external API](externalapi/events.js) hosted on Heroku that lists current and upcoming events at DevNet.
+* Click [![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg)](https://glitch.com/edit/#!/import/github/CiscoDevNet/botkit-template)
 
-![devnet-Botkit](docs/img/devnet-botkit-convo.png)
+* Open the `.env` file, then uncomment the `WEBEX_ACCESS_TOKEN` variable and paste in your bot's access token
 
-## Emoji (websocket)
+    **Optional**: enter appropirate info in the "Bot meta info..." section
 
-This [bot turns emoji tags](emoji.js#58) to unicode characters and posts back the 'emojified' phrase
+    >Note that thanks to Glitch `PROJECT_DOMAIN` env variable, you do not need to add a `PUBLIC_URL` variable pointing to your app domain
 
-The bot leverages the [experimental websocket library for Webex Teams](https://github.com/marchfederico/ciscospark-websocket-events),
-so that you don't need to register a Webhook and expose your bot on the internet.
+You bot is all set, responding in 1-1 and 'group' spaces, and sending a welcome message when added to a space!
 
-From a Mac/Linux bash shell, type:
+You can verify the bot is up and running by browsing to its healthcheck URL (i.e. the app domain.)
 
-```shell
-> npm install
-> ACCESS_TOKEN=0123456789abcdef node emoji.js
-```
+## Quick start on Heroku
 
-From a Windows shell, type:
+* Create a new project pointing to this repo.
 
-```shell
-> npm install
-> set ACCESS_TOKEN=0123456789abcdef
-> node emoji.js
-```
+* Open your app settings, view your config variables, and add a `WEBEX_ACCESS_TOKEN` variable with your bot's access token as value.
 
-![emoji](docs/img/emoji-websocket.png)
+* Unless your app is using [Dyno Metadata](https://devcenter.heroku.com/articles/dyno-metadata), you also need to add a PUBLIC_URL variable pointing to your app domain.
+
+![](assets/images/heroku_config-variables.png)
+
+You bot is all set, responding in 1-1 and 'group' spaces, and sending a welcome message when added to a space!
+
+You can verify the bot is up and running by browsing to its healthcheck URL (i.e. the app domain.)

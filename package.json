@@ -1,25 +1,23 @@
 {
-  "name": "botkit-webex-samples",
-  "version": "0.4.0",
-  "description": "Webex Teams bots built with Botkit",
-  "main": "helloworld.js",
+  "name": "botkit-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bot.js",
   "scripts": {
-    "start": "node helloworld.js"
+    "start": "node bot.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "webex",
-    "webex-teams",
-    "botkit",
-    "devnet"
-  ],
-  "author": "Stève Sfartz (Cisco DevNet) <stsfartz@cisco.com>",
-  "license": "MIT",
   "dependencies": {
-    "botkit": "^0.7.0",
-    "node-env-file": "^0.1.8",
-    "ciscospark-websocket-events": "^1.2.0",
-    "debug": "^4.1.0",
-    "node-emoji": "^1.8.1",
-    "request": "^2.88.0"
+    "botbuilder-adapter-webex": "^1.0.5",
+    "botbuilder-storage-mongodb": "^0.9.5",
+    "botbuilder-storage-redis": "^1.0.9",
+    "botkit": "^4.6.2",
+    "botkit-plugin-cms": "^1.0.3",
+    "dotenv": "^8.2.0",
+    "fetch": "^1.1.0",
+    "jsxapi": "^5.0.2",
+    "node-emoji": "^1.10.0",
+    "redis": "^2.8.0",
+    "uuid": "^3.4.0"
   }
 }
