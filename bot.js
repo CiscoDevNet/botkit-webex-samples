@@ -64,7 +64,7 @@ if (process.env.MONGO_URI) {
 }
 
 // Create Webex Adapter
-const uuidv4 = require('uuid/v4');
+const { v4: uuidv4 } = require( 'uuid' );
 const { WebexAdapter } = require('botbuilder-adapter-webex');
 
 // If PUBLIC_URL not configured, supply a dummy pulic_address
