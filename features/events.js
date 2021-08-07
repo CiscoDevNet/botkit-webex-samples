@@ -27,7 +27,6 @@
  */
 
 const { BotkitConversation } = require( 'botkit' );
-const fetch = require('node-fetch');
 
 module.exports = async function (controller) {
 
