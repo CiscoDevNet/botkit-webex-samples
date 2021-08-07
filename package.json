@@ -1,15 +1,14 @@
 {
-  "name": "botkit-template",
+  "name": "botkit-webkit-samples",
   "version": "1.0.0",
   "description": "",
   "main": "bot.js",
   "scripts": {
-    "start": "node bot.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node bot.js"
   },
   "dependencies": {
     "botbuilder-adapter-webex": "^1.0.9",
-    "botbuilder-storage-mongodb": "^1.0.5",
+    "botbuilder-storage-mongodb": "^1.0.8",
     "botbuilder-storage-redis": "^1.0.10",
     "botkit": "^4.10.0",
     "botkit-plugin-cms": "^1.0.3",
@@ -17,7 +16,7 @@
     "fetch": "^1.1.0",
     "jsxapi": "^5.0.3",
     "node-emoji": "^1.10.0",
-    "redis": "^3.0.2",
-    "uuid": "^8.3.0"
+    "redis": "^3.1.1",
+    "uuid": "^8.3.2"
   }
 }
